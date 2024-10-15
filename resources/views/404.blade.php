@@ -157,7 +157,7 @@
                 @if(Auth::user())
                 <a href="{{Route('admin.user.index')}}" class="btn2">Back to Home</a>
                 @else
-                <a href="{{Route('admin.user.index')}}" class="btn2">Back to Home</a>
+                <a href="{{Route('admin.home.index')}}" class="btn2">Back to Home</a>
             @endif
             </div> <!-- content ends -->
         </div> <!-- wrapper ends -->
