@@ -1,13 +1,12 @@
-<header class="flex justify-between md:px-20 p-2">
-    <div class="">
+<header class="flex justify-between md:px-16 p-2">
+    <div class="md:pl-15">
         <a href="#">
-          <img src="{{asset('logo.png')}}" class="md:w-44 w-56 items-center" alt="" />
+          <img src="logo.png" class="md:w-44 w-56 items-center" alt="" />
         </a>
       </div>  
-      
-      <button class="" onclick="toggleModal()"><i class="fa-regular fa-circle-user px- text-3xl text-[#718096] hover:text-blue-700 transition font-medium duration-500 "></i></button>
+      <button class="" onclick="toggleModal()"><i class="fa-regular fa-circle-user px-5 text-4xl text-[#718096] hover:text-blue-700 transition font-medium duration-500 "></i></button>
 </header>
-<navbar
+<nav
 class="md:flex flex-wrap items-center justify-end md:justify-center bg-[#EEB230] w-full py-4 md:py-0 px-4 text-lg text-gray-700"
 >
 <svg
@@ -33,14 +32,13 @@ class="md:flex flex-wrap items-center justify-end md:justify-center bg-[#EEB230]
     <li class="md:p-6 py-2">
       <a
         class="block nav-active hover:text-black-400 text-sm hover:font-extrabold"
-        href="{{route('home')}}"
+        href="{{Route('home')}}"
         >Home</a
       >
     </li>
     <li class="md:p-6 py-2">
       <a
         class="block hover:text-black-400 text-sm hover:font-extrabold"
-        {{-- href="{{route('informasiPublik.index')}}" --}}
         href="{{Route('404')}}"
         >Informasi Publik</a
       >
@@ -48,11 +46,10 @@ class="md:flex flex-wrap items-center justify-end md:justify-center bg-[#EEB230]
     <li class="md:p-6 py-2">
       <a
         class="block hover:text-black-400 text-sm hover:font-extrabold"
-        {{-- href="{{Route('konsultasi.index')}}" --}}
-        href="{{Route('404')}}"
-        >Informasi Pelayanan Publik</a
+        href="{{route('404')}}"
+        >Pelayanan Publik</a
       >
     </li>
   </ul>
 </div>
-</navbar>
+</nav>
