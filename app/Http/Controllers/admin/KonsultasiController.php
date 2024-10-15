@@ -15,7 +15,7 @@ class KonsultasiController extends Controller
             return view('admin.konsultasi.index');
 
         }else{
-            return redirect('/')->with('alert', 'Silahkan login terlebih dahulu!');
+            return view('home.index')->with('alert', 'Silahkan login terlebih dahulu!');
         }
     }
 
