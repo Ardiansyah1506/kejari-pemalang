@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Admin Template</title>
-    <meta name="author" content="David Grzyb">
-    <meta name="description" content="">
+    <title>Admin Kejari Pemalang</title>
+    <meta name="author" content="Fauzi Ardiansyah">
+    <meta name="description" content="Manajemen Admin Kejari">
+    <link rel="icon" href="{{asset('logo-icon.png')}}">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
