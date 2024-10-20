@@ -11,7 +11,7 @@
             <div class="px-5 py-7">
                 <form action="{{Route('admin.user.store')}}" method="POST">
                     @csrf    
-                    <label class="font-semibold text-sm text-gray-600 pb-1 block">E-mail</label>
+                    <label class="font-semibold text-sm text-gray-600 pb-1 block">Username</label>
                         <input type="text" name="username" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
                         <label class="font-semibold text-sm text-gray-600 pb-1 block">Password</label>
                         <input type="text" name="password" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" />
