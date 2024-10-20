@@ -13,11 +13,10 @@
 
 @section('content')
     @if (session('success'))
-        <div class="bg-green-500 text-white p-4 rounded mb-4">
+        <div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
             {{ session('success') }}
         </div>
     @endif
-
     <div class="flex md:flex-row flex-col-reverse gap-4 justify-between items-end mb-4 ">
         <div class="relative w-full md:w-1/2">
             <input id="searchInput"
@@ -47,7 +46,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
 
                 </tbody>
 
@@ -61,6 +60,7 @@
 @section('js-library')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
 @section('js-custom')
@@ -99,6 +99,17 @@
 
 
         $(document).ready(function() {
+            if ($('#successMessage').length) {
+                const message = $('#successMessage').text().trim();
+                if (message) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: message,
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
             let table = $('#beritaTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -114,7 +125,8 @@
                             // Menggunakan eval untuk mengeksekusi HTML dari data status
                             return row.is_online == 1 ?
                                 '<span class="bg-green-400 p-2">Online</span>' :
-                                '<span class="text-gray-600 p-2 ">' + timeAgo(row.last_login) + '</span>';
+                                '<span class="text-gray-600 p-2 ">' + timeAgo(row.last_login) +
+                                '</span>';
                         },
                     },
                     {

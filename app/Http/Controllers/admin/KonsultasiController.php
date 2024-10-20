@@ -15,7 +15,7 @@ class KonsultasiController extends Controller
     public function index()
     {
         $pageTitle = 'Forum Konsultasi';
-
+        $user = Auth::user();
         // Query untuk data dengan left join dan filter pencarian
         $data = ForumKonsultasi::leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
@@ -28,7 +28,7 @@ class KonsultasiController extends Controller
             ->paginate(10);
 
         if (Auth::check()) {
-            return view('admin.konsultasi.index', compact('pageTitle', 'data'));
+            return view('admin.konsultasi.index', compact('user', 'pageTitle', 'data'));
         } else {
             return redirect()->route('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
@@ -95,6 +95,7 @@ class KonsultasiController extends Controller
     public function detail($id)
     {
         $pageTitle = 'Forum Konsultasi';
+        $user = Auth::user();
         $data = ForumKonsultasi::where('forum_konsultasi.id', $id)->leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
                 'forum_konsultasi.id',
@@ -105,12 +106,13 @@ class KonsultasiController extends Controller
                 'forum_konsultasi.keterangan',
                 'forum_konsultasi.dokumen_pendukung',
                 'jawaban.keterangan AS jawaban',
+                'jawaban.created_at AS waktu_jawab',
                 'jawaban.id_forum'
             )
             ->first();
-            // dd($data);
+        // dd($data);
 
-        return view('admin.konsultasi.detail', compact('data','pageTitle'));
+        return view('admin.konsultasi.detail', compact('user', 'data', 'pageTitle'));
     }
 
     // Menampilkan form tambah data konsultasi
@@ -136,10 +138,28 @@ class KonsultasiController extends Controller
     // Menghapus data konsultasi
     public function destroy($id)
     {
-        $konsultasi = ForumKonsultasi::findOrFail($id);
-        Storage::disk('public/file_pendukung')->delete($konsultasi->file); // Hapus file dari storage
-        $konsultasi->delete(); // Hapus data dari database
-
-        return redirect()->route('konsultasi.index')->with('success', 'Data berhasil dihapus!');
+        try {
+            // Find the main consultation record; this will throw a 404 if not found
+            $konsultasi = ForumKonsultasi::findOrFail($id);
+            
+            // Find the related answer record
+            $jawabankonsultasi = JawabanKonsultasi::where('id_forum', $id)->first();
+            
+            // Delete the main consultation record
+            $konsultasi->delete();
+            
+            // Check if jawabankonsultasi exists before attempting to delete it
+            if ($jawabankonsultasi) {
+                $jawabankonsultasi->delete(); // Delete if exists
+            }
+    
+            // Return a JSON response for AJAX requests
+            return response()->json(['success' => 'Data berhasil dihapus!']);
+        } catch (\Exception $e) {
+            // Return an error response in case of exception
+            return response()->json(['error' => 'Gagal menghapus data!'], 500);
+        }
     }
+    
+
 }

@@ -14,9 +14,10 @@ class GaleriController extends Controller
     public function index()
     {
         $galeri = Galeri::all();
+        $user= Auth::user();
         $pageTitle = 'Berita';
         if (Auth::check()) {
-            return view('admin.galeri.index', compact('pageTitle','galeri'));
+            return view('admin.galeri.index', compact('user','pageTitle','galeri'));
         } else {
             return view('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
@@ -44,7 +45,7 @@ class GaleriController extends Controller
 
         $galeri->save();
 
-        return redirect()->back()->with('success', 'Berita berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Galeri berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -102,6 +103,6 @@ class GaleriController extends Controller
         }
         $galeri->delete();
         
-        return response()->json(['success' => 'Berita berhasil dihapus.']);
+        return response()->json(['success' => 'Galeri berhasil dihapus.']);
     }
 }

@@ -12,11 +12,10 @@
 
 @section('content')
     @if (session('success'))
-        <div class="bg-green-500 text-white p-4 rounded mb-4">
+        <div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
             {{ session('success') }}
         </div>
     @endif
-
     <div class="flex md:flex-row flex-col-reverse gap-4 justify-between items-end mb-4 ">
         <div class="relative w-full md:w-1/2">
             <input id="searchInput"
@@ -34,19 +33,12 @@
             class="bg-[#228d81] hover:bg-[#66d6c9] text-white px-4 py-2 rounded hover:cursor-pointer">Tambah</button>
     </div>
 
-
-    <!-- component -->
-
-    {{-- <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 md:p-2 xl:p-5"> --}}
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
         @foreach ($galeri as $galery)
             <div class="h-full flex w-full justify-center items-center  p-2">
-                <!-- card  -->
-                <div
-                    class=" relative bg-white border rounded-lg shadow-md   transform transition duration-500 hover:scale-105">
-                            <img class="rounded-t-lg w-full aspect-[4/3] object-contain" src="{{ asset('foto_galeri/' . $galery->foto) }}"
-                                loading="lazy">
-
+                <div class="relative bg-white border rounded-lg shadow-md transform transition duration-500 hover:scale-105">
+                    <img class="rounded-t-lg w-full aspect-[4/3] object-contain"
+                        src="{{ asset('foto_galeri/' . $galery->foto) }}" loading="lazy">
                     <div class="px-4 pb-3 py-2">
                         <div>
                             <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
@@ -64,12 +56,8 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         @endforeach
-
     </div>
 
     @include('admin.galeri.modal')
@@ -79,6 +67,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('vendor/quill/quill.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
 @section('js-custom')
@@ -97,10 +86,21 @@
             $('#createNew').click(function() {
                 $('#modal-title').text('Tambah Galeri');
                 $('#id').val(''); // Kosongkan ID
-                $('#form-galeri').attr('action',
-                    "{{ route('admin.galeri.store') }}"); // Set action ke store
+                $('#form-galeri').attr('action', "{{ route('admin.galeri.store') }}"); // Set action ke store
                 toggleModal();
             });
+
+            if ($('#successMessage').length) {
+                const message = $('#successMessage').text().trim();
+                if (message) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: message,
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
 
             // Event listener untuk tombol edit
             $(document).on('click', '.edit-btn', function(e) {
@@ -108,8 +108,7 @@
                 const id = $(this).data('id');
                 $('#modal-title').text('Edit Galeri');
                 $('#modal').removeClass('hidden');
-                $('#form-galeri').attr('action',
-                    "{{ route('admin.galeri.update') }}"); // Set action ke update
+                $('#form-galeri').attr('action', "{{ route('admin.galeri.update') }}"); // Set action ke update
 
                 // AJAX untuk mengambil data
                 $.ajax({
@@ -123,10 +122,9 @@
                             // Jika ada foto, buat elemen link
                             let fotoUrl = `{{ asset('foto_galeri/${data.foto}') }}`;
                             $('#link').html(
-                                `<a href="${fotoUrl}" class="bg-blue-100 w-full text-blue-600 py-1 p-2 rounded-sm  " target="_blank" >Link Gambar</a>`
+                                `<a href="${fotoUrl}" class="bg-blue-100 w-full text-blue-600 py-1 p-2 rounded-sm" target="_blank">Link Gambar</a>`
                             );
                             console.log($('#link').html());
-
                         } else {
                             console.log("Tidak ada gambar."); // Tambahkan ini
                             // Jika tidak ada foto, tampilkan teks
@@ -141,7 +139,6 @@
 
             $(document).on('click', '.btn-delete', function(e) {
                 e.preventDefault();
-                console.log('test')
                 const id = $(this).data('id');
                 console.log(id)
                 if (confirm("Apakah Anda yakin ingin menghapus berita ini?")) {
@@ -152,8 +149,13 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            alert(response.success);
                             location.reload()
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: response.success,
+                                confirmButtonText: 'OK'
+                            });
                         },
                         error: function(xhr) {
                             alert('Gagal menghapus data');
@@ -161,7 +163,6 @@
                     });
                 }
             });
-
 
             $('#searchInput').on('keyup', function() {
                 let query = $(this).val();
@@ -178,39 +179,32 @@
 
                         response.forEach(function(galery) {
                             let galeryHtml = `
-                        <div class="h-full flex w-full justify-center items-center p-2">
-                            <div class="relative bg-white border rounded-lg shadow-md transform transition duration-500 hover:scale-105">
-                                <div class="flex justify-center">
-                                    <a href="#">
-                                        <img class="rounded-t-lg w-full aspect-[4/3]" src="{{ asset('foto_galeri/') }}/${galery.foto}" loading="lazy">
-                                    </a>
-                                </div>
-                                <div class="px-4 pb-3 py-2">
-                                    <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
-                                        ${galery.judul}
-                                    </p>
-                                </div>
-                                <div class="flex justify-end p-3 rounded-md">
-                                    <div class="flex border border-gray-200 justify-end rounded-md">
-                                        <i class="fa-regular fa-pen-to-square text-gray-600 text-md md:text-md py-2 px-2 md:px-4 edit-btn" data-id="${galery.id}"></i>
-                                        <div class="border border-1 border-gray-200"></div>
-                                        <i class="fa-solid fa-trash-can text-red-600 text-md md:text-md py-2 px-2 md:px-4 btn-delete" data-id="${galery.id}"></i>
+                                <div class="h-full flex w-full justify-center items-center p-2">
+                                    <div class="relative bg-white border rounded-lg shadow-md transform transition duration-500 hover:scale-105">
+                                        <div class="flex justify-center">
+                                            <a href="#">
+                                                <img class="rounded-t-lg w-full aspect-[4/3]" src="{{ asset('foto_galeri/') }}/${galery.foto}" loading="lazy">
+                                            </a>
+                                        </div>
+                                        <div class="px-4 pb-3 py-2">
+                                            <p class="antialiased text-gray-600 dark:text-gray-400 text-sm break-all">
+                                                ${galery.judul}
+                                            </p>
+                                        </div>
+                                        <div class="flex justify-end p-3 rounded-md">
+                                            <div class="flex border border-gray-200 justify-end rounded-md">
+                                                <i class="fa-regular fa-pen-to-square text-gray-600 text-md md:text-md py-2 px-2 md:px-4 edit-btn" data-id="${galery.id}"></i>
+                                                <div class="border border-1 border-gray-200"></div>
+                                                <i class="fa-solid fa-trash-can text-red-600 text-md md:text-md py-2 px-2 md:px-4 btn-delete" data-id="${galery.id}"></i>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>`;
-
-                            galleryContainer.append(
-                            galeryHtml); // Tambahkan HTML galeri ke kontainer
+                                </div>`;
+                            galleryContainer.append(galeryHtml); // Tambahkan elemen galeri
                         });
-                    },
-                    error: function(xhr) {
-                        console.error('Gagal melakukan pencarian');
                     }
                 });
             });
-
-
         });
     </script>
 @endsection

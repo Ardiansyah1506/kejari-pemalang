@@ -14,8 +14,9 @@ class BeritaController extends Controller
     public function index()
     {
         $pageTitle = 'Berita';
+        $user = Auth::user();
         if (Auth::check()) {
-            return view('admin.berita.index', compact('pageTitle'));
+            return view('admin.berita.index', compact('user', 'pageTitle'));
         } else {
             return redirect('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
@@ -37,7 +38,7 @@ class BeritaController extends Controller
             })
             ->make(true);
     }
-    
+
 
     public function store(Request $request)
     {
@@ -53,14 +54,14 @@ class BeritaController extends Controller
         $berita->deskripsi = $request->deskripsi;
         $berita->publisher = $publisher;
 
-       
-    if ($request->hasFile('foto')) {
-        $file = $request->file('foto');
-        // Simpan gambar di public/foto_berita
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('foto_berita'), $fileName);
-        $berita->foto = $fileName; // simpan nama file
-    }
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            // Simpan gambar di public/foto_berita
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('foto_berita'), $fileName);
+            $berita->foto = $fileName; // simpan nama file
+        }
 
         $berita->save();
 
@@ -80,9 +81,11 @@ class BeritaController extends Controller
             'deskripsi' => 'required|string',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        $id= $request->id;
+        $id = $request->id;
         $berita = Berita::find($id);
         $berita->judul = $request->judul;
+        $publisher = Auth::user()->username;
+        $berita->publisher = $publisher;
         $berita->deskripsi = $request->deskripsi;
         if (!$berita) {
             Log::error("Berita dengan ID {$id} tidak ditemukan.");
@@ -117,7 +120,7 @@ class BeritaController extends Controller
             Storage::disk('public')->delete($berita->foto);
         }
         $berita->delete();
-        
+
         return response()->json(['success' => 'Berita berhasil dihapus.']);
     }
 }

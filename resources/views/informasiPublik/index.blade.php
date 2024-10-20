@@ -5,6 +5,9 @@
         .hero {
             height: 600px;
         }
+        .text-vsm{
+            font-size: 0.5rem;
+        }
 
         @media screen and (max-width: 600px) {
             .hero {
@@ -34,14 +37,19 @@
                     <div class="relative  col-span-1 row-span-1 ">
                         <img class="w-full h-full object-cover rounded-md"
                             src="{{asset('foto_galeri/'.$data->foto)}}" alt="Random image">
-                      
                     </div>
                     @else
                     <div class="relative  col-span-1 row-span-1 ">
                         <img class="w-full h-full object-cover rounded-md"
                         src="{{asset('foto_galeri/'.$data->foto)}}" alt="Random image">
-                            <div class="absolute inset-0 rounded-md bg-gray-600 bg-opacity-50 flex items-center justify-center">
-                                <h2 class="text-white flex flex-col text-center text-3xl font-bold"><div class="border border-1 rounded-full p-3"><i class="fa-regular fa-arrow-up  text-xl md:text-4xl text-[#718096] hover:text-blue-700 transition font-medium duration-500 "></i></div> <span>Selengkapnya</span></h2>
+                            <div class="absolute inset-0 rounded-md cursor-pointer   bg-gray-600 bg-opacity-50 flex items-center justify-center">
+                                <h2 class="text-white flex flex-col text-center gap-2  font-bold hover:scale-110">
+                                    <a href="{{route('galeri')}}" class="flex items-center justify-center  rounded-md">
+                                        {{-- <img src="{{asset('right-arrow.png')}}" class="object-contain  w-24" alt=""> --}}
+                                        {{-- <i class="fa-solid fa-chevron-right text-white p-2 rounded-full border py-2 "></i> --}}
+                                        <i class="fa-regular fa-circle-right text-white text-5xl"></i>
+                                    </a>
+                                     <span class="text-xl font-mediun">Selengkapnya</span></h2>
                             </div>
                     </div>
                     @endif
@@ -58,8 +66,8 @@
                 <div
                     class="flex md:flex-row col-span-1 md:col-span-4 flex-col-reverse gap-5 justify-center items-center p-4">
                     <div>
-                        <h4 class="text-md font-semibold text-green-800 mb-2">{{ $data->judul }}</h4>
-                        <p class="text-gray-600 text-sm bg-red-500">{!! $data->deskripsi !!}</p>
+                        <a href="{{route('berita.detail', $data->id)}}" class="text-2xl font-semibold text-green-800 mb-2">{{ $data->judul }}</a>
+                        <p class="text-gray-600  bg-red-500">{!! $data->deskripsi !!}</p>
                         <div class="flex justify-between text-sm items-center mt-5 text-gray-500">
                             <span class="mr-2 ">{{ $data->created_at->format('d/m/Y') }}</span>
                         </div>
@@ -68,9 +76,11 @@
                 </div>
             @endforeach
 
-            <!-- Additional articles... -->
-
         </div>
+        <a href="{{route('berita')}}" class="block text-[#006E61] text-center w-full p-2 border shadow-sm">
+            Lihat Semua Berita
+        </a>
+        
     </div>
 @endsection
 

@@ -7,12 +7,13 @@
         .bg-custom-green {
             background: #228d81;
         }
+   
     </style>
 @endsection
 
 @section('content')
     @if (session('success'))
-        <div class="bg-green-500 text-white p-4 rounded mb-4">
+        <div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
             {{ session('success') }}
         </div>
     @endif
@@ -37,7 +38,7 @@
 
     <!-- component -->
     <div class="text-gray-900 bg-white rounded shadow-md w-full">
-        <div class="p-4 overflow-x-auto">
+        <div class="md:p-4 overflow-x-auto">
             <table class="w-full text-sm md:text-md mb-4" id="beritaTable">
                 <thead>
                     <tr class="border-b">
@@ -46,7 +47,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-sm">
 
                 </tbody>
 
@@ -61,6 +62,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('vendor/quill/quill.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
 
 @section('js-custom')
@@ -93,6 +95,17 @@
                 }
             });
 
+            if ($('#successMessage').length) {
+                const message = $('#successMessage').text().trim();
+                if (message) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: message,
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
             // Fungsi untuk menangani submit
             document.querySelector('#form-berita').onsubmit = function() {
                 var descriptionInput = document.querySelector('#deskripsi');
@@ -146,7 +159,7 @@
                     }
                 });
             });
-            
+
             $(document).on('click', '.btn-delete', function(e) {
                 e.preventDefault();
                 console.log('test')
@@ -160,9 +173,14 @@
                             _token: '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            alert(response.success);
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil!',
+                                text: response.success,
+                                confirmButtonText: 'OK'
+                            });
                             $('#beritaTable').DataTable().ajax
-                        .reload(); // Reload tabel setelah data dihapus
+                                .reload(); // Reload tabel setelah data dihapus
                         },
                         error: function(xhr) {
                             alert('Gagal menghapus data');
@@ -170,9 +188,10 @@
                     });
                 }
             });
-          
+
 
             let table = $('#beritaTable').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.berita.getData') }}",
@@ -205,7 +224,7 @@
                 table.search(this.value).draw();
             });
 
-          
+
         });
     </script>
 @endsection

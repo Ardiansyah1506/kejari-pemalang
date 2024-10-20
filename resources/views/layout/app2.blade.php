@@ -7,7 +7,7 @@
     <title>Admin Kejari Pemalang</title>
     <meta name="author" content="Fauzi Ardiansyah">
     <meta name="description" content="Manajemen Admin Kejari">
-    <link rel="icon" href="{{asset('logo-icon.png')}}">
+    <link rel="icon" href="{{ asset('logo-icon.png') }}">
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -65,7 +65,6 @@
 
 
     @yield('js-library')
-    <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
@@ -74,30 +73,47 @@
     <script>
         $(document).ready(function() {
             const currentUrl = window.location.href;
+            const url = new URL(currentUrl);
+
+            // Hapus parameter ?page dan parameter lainnya
+            url.searchParams.delete('page'); // Hapus parameter 'page'
+
+            // Ambil URL tanpa parameter
+            const baseUrl = url.origin + url.pathname;
 
             // Loop melalui semua tautan navigasi
             document.querySelectorAll('.nav-item').forEach(link => {
-                // Cek apakah href link sesuai dengan URL saat ini
-                if (link.href === currentUrl) {
+                // Cek apakah href link sesuai dengan URL tanpa parameter
+                const linkUrl = new URL(link.href);
+                linkUrl.searchParams.delete('page'); // Hapus parameter 'page' dari tautan juga
+                const linkBaseUrl = linkUrl.origin + linkUrl.pathname;
+
+                if (linkBaseUrl === baseUrl) {
                     // Tambahkan kelas aktif pada link yang sesuai
                     link.classList.add('active-nav-link');
                 } else {
+                    // Hapus kelas aktif dari tautan yang tidak sesuai
                     link.classList.remove('active-nav-link');
                 }
             });
-            $('#logoutButton').on('click', function(event) {
-                event.preventDefault();
+
+            function logoutButton(){
+                console.log(test)
+            }
+            
+            $('#logoutButton').on('click', function(e) {
+                console.log(pppp)
+                e.preventDefault();
 
                 $.ajax({
                     url: "{{ route('logout') }}", // URL endpoint logout
-                    type: "POST",
+                    type: "GET",
                     data: {
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
                         // Tampilkan pesan atau lakukan pengalihan halaman jika diperlukan
                         alert("Anda berhasil logout.");
-                        window.location.href = '/'; // Arahkan ke halaman utama setelah logout
                     },
                     error: function(xhr) {
                         alert("Gagal logout, silakan coba lagi.");

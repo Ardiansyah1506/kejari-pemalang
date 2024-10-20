@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ForumKonsultasi;
 use Illuminate\Http\Request;
+use App\Models\ForumKonsultasi;
+use Illuminate\Support\Facades\Auth;
 
 class PelayananPublikController extends Controller
 {
     public function index() {
+        $user = Auth::user();
         $ForumKonsultasi = ForumKonsultasi::leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
                 'forum_konsultasi.nama', 
@@ -19,9 +21,10 @@ class PelayananPublikController extends Controller
                 'jawaban.keterangan AS jawaban',
                 'jawaban.id_forum'
             )
+            ->orderBy('forum_konsultasi.created_at', 'desc') // Mengurutkan berdasarkan created_at secara descending (terbaru dulu)
             ->paginate(8); // Menggunakan paginate dengan limit 8
     
-        return view('pelayananPublik.index', compact('ForumKonsultasi'));
+        return view('pelayananPublik.index', compact('user','ForumKonsultasi'));
     }
     
     
@@ -52,7 +55,7 @@ class PelayananPublikController extends Controller
     
         $ForumKonsultasi->save();
     
-        return redirect()->back()->with('success', 'Berita berhasil ditambahkan.');
+        return redirect()->back()->with('success', 'Pengaduan berhasil ditambahkan.');
     }
     
 

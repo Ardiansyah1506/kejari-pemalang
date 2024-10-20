@@ -1,24 +1,27 @@
 <footer class="bg-green-800 text-white py-6">
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Address -->
-        <div>
-            <h5 class="text-lg font-semibold">KEJAKSAAN NEGERI PEMALANG</h5>
-            <p class="mt-2 text-sm">
-                Jl. Pemuda No.30, Mulyoharjo, Kec. Pemalang, Kabupaten Pemalang,
-                Jawa Tengah 52313
-            </p>
-        </div>
-        <div>
-            <h5 class="text-lg font-semibold">Hubungi Kami</h5>
-            <p class="mt-2 text-sm">📞 (0284) 326135</p>
-            <p class="text-sm">📧 kejari.pemalang@kejaksaan.go.id</p>
-        </div>
-        <div>
-            <h5 class="text-lg font-semibold">Pelayanan</h5>
+          <img src="{{asset('logo-footer.png')}}" class="w-3/4 " alt="">
+        <div class="grid grid-cols-1 gap-2">
+            <div class="flex flex-col gap-2">
+                <h5 class="text-lg font-semibold">Kantor Pusat</h5>
+                <p class="mt-2 text-sm">Jl. Pemuda No.30, Mulyoharjo, Kec. Pemalang, Kabupaten Pemalang, Jawa Tengah 52313</p>
+            </div>
+            <div class="flex flex-col gap-2">
+                <h5 class="text-lg font-semibold">Pelayanan</h5>
             <p class="mt-2 text-sm">Senin sd Jumat 08:00 - 16:00</p>
+            </div>
+        </div>
+        <div>
+            <h5 class="text-lg font-semibold">Informasi Kontak</h5>
+            <p class="mt-2 text-sm"><i class="fa-solid fa-phone-volume"></i> (0284) 326135</p>
+            <p class="mt-2 text-sm"><i class="fa-regular fa-envelope"></i> kejari.pemalang@kejaksaan.go.id</p>
+        </div>
+        <div>
+            <iframe class="w-full aspect-video h-full" loading="lazy" src="https://maps.google.com/maps?q=kejaksaan%20negeri%20pemalang&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near" title="kejaksaan negeri pemalang" aria-label="kejaksaan negeri pemalang"></iframe>
         </div>
     </div>
     <div class="mt-4 text-center text-sm">
-        <p>Copyright © 2024 Kejaksaan Negeri Pemalang</p>
+        <p>Copyright © 2024 Kejaksaan Negeri Pemalang </p>
     </div>
 </footer>

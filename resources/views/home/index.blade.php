@@ -44,7 +44,7 @@
                         <p class="text-gray-600 text-sm line-clamp-4">{!! $berita->deskripsi !!}</p>
                         <div class="flex justify-between text-sm items-center mt-5 text-gray-500">
                             <span class="mr-2 ">{{ $berita->created_at->format('d/m/Y') }}</span>
-                            <a href="#">Selengkapnya...</a>
+                            <a href="{{route('berita.detail',$berita->id)}}">Selengkapnya...</a>
                         </div>
                     </div>
                     <img src="{{ asset('foto_berita/' . $berita->foto) }}" class="md:aspect-[4/3] md:w-1/4  " alt="">
@@ -52,7 +52,7 @@
                 @else
                 <div class="gap-2 items-center p-4 aspect-[5/3]">
                     <img src="{{ asset('foto_berita/' . $berita->foto) }}" class="aspect-[4/3] w-full object-contain" alt="">
-                    <div class="flex flex-col h-full justify-between ">
+                    <div class="flex flex-col h-full justify-evenly ">
                         <h4 class="text-md font-semibold  text-green-800 mb-2 overflow-hidden line-clamp-4">{{ $berita->judul }}</h4>
                         <div class="flex justify-between text-sm  items-center mt-5 text-gray-500">
                             <span class="mr-2 ">{{ $berita->created_at->format('d/m/Y') }}</span>
