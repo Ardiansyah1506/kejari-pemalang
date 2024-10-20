@@ -17,7 +17,7 @@ class BeritaController extends Controller
         if (Auth::check()) {
             return view('admin.berita.index', compact('pageTitle'));
         } else {
-            return redirect('/')->with('alert', 'Silahkan login terlebih dahulu!');
+            return redirect('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
     }
 
@@ -29,9 +29,9 @@ class BeritaController extends Controller
                 return '
                 <div class="p-3 px-5 flex justify-end">
                     <button type="button"
-                        class="edit-btn mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">Edit</button>
+                        class="edit-btn  text-xl rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">   <i class="fa-regular fa-pen-to-square text-gray-600 text-md md:text-md py-2 px-2 md:px-4 " "></i></button>
                     <button type="button"
-                        class="btn-delete text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">Delete</button>
+                        class="btn-delete text-xl  py-1  rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '"><i class="fa-solid fa-trash-can text-red-500 hover:text-red-300 text-md md:text-md py-2 px-2 md:px-4"></i></button>
                 </div>
                 ';
             })

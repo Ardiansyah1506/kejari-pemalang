@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,6 +11,9 @@ class HomeController extends Controller
         return view("404");
     }
     public function index(){
-        return view('home.index');
+        $data = Berita::limit(6)->get();
+        return view('home.index' ,compact('data'));
     }
+
+    
 }

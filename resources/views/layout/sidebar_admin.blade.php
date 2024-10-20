@@ -15,7 +15,7 @@
             <i class=" mr-3"><img src="{{asset('galery-icon.png')}}" alt=""></i>
             Kelola Galeri
         </a>
-        <a href="{{route('404')}}" class="flex items-center  opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <a href="{{route('admin.konsultasi.index')}}" class="flex items-center  opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                         <i class=" mr-3"><img src="{{asset('konsultasi-icon.png')}}" alt=""></i>
 
             Forum Konsultasi
@@ -67,7 +67,7 @@
             <i class=" mr-3"><img src="{{asset('galery-icon.png')}}" alt=""></i>
                 Kelola Galeri
             </a>
-            <a href="{{route('404')}}" class="flex items-center  opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+            <a href="{{route('admin.konsultasi.index')}}" class="flex items-center  opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                             <i class=" mr-3"><img src="{{asset('konsultasi-icon.png')}}" alt=""></i>
 
                 Forum Konsultasi
@@ -81,7 +81,7 @@
 
     </header>
 <!-- Desktop Header -->
-<header class="w-full hidden md:flex md:justify-between justify-center items-center md:bg-white py-2 px-2 md:px-10 flex">
+<header class="w-full hidden md:flex md:justify-between justify-center items-center md:bg-white py-2 px-2 md:px-10 ">
     <h1 class="text-xl md:text-3xl font-semibold ">{{$pageTitle}}</h1>
             <div class="flex justify-center py-1 px-3 items-center bg-[#f2f2f3] rounded-md text-white">
                 <i

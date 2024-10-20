@@ -1,6 +1,8 @@
 @extends('layout.app2')
 
 @section('css-library')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <style>
         .bg-custom-green {
@@ -29,7 +31,8 @@
                 </svg>
             </button>
         </div>
-        <button id="createNew" class="bg-[#228d81] text-white px-4 py-2 rounded hover:cursor-pointer" onclick="toggleModal()">Tambah</button>
+        <button id="createNew" class="bg-[#228d81] text-white px-4 py-2 rounded hover:cursor-pointer"
+            onclick="toggleModal()">Tambah</button>
     </div>
 
 
@@ -44,7 +47,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
 
                 </tbody>
 
@@ -68,6 +71,33 @@
             modal.classList.toggle('hidden');
         }
 
+        function timeAgo(date) {
+            const now = new Date();
+            const past = new Date(date);
+            const diffInSeconds = Math.floor((now - past) / 1000); // Selisih waktu dalam detik
+            const diffInMinutes = Math.floor(diffInSeconds / 60);
+            const diffInHours = Math.floor(diffInMinutes / 60);
+            const diffInDays = Math.floor(diffInHours / 24);
+
+            if (diffInMinutes < 60) {
+                return `${diffInMinutes} menit yang lalu`;
+            } else if (diffInHours < 24) {
+                return `${diffInHours} jam yang lalu`;
+            } else if (diffInDays === 1) {
+                return `Kemarin`;
+            } else if (diffInDays < 7) {
+                return `${diffInDays} hari yang lalu`;
+            } else {
+                // Jika lebih dari seminggu, tampilkan tanggal dalam format yang diinginkan (misalnya: DD-MM-YYYY)
+                return past.toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+        }
+
+
         $(document).ready(function() {
             let table = $('#beritaTable').DataTable({
                 processing: true,
@@ -84,7 +114,7 @@
                             // Menggunakan eval untuk mengeksekusi HTML dari data status
                             return row.is_online == 1 ?
                                 '<span class="bg-green-400 p-2">Online</span>' :
-                                '<span class="bg-gray-400 p-2">' + row.last_login + '</span>';
+                                '<span class="text-gray-600 p-2 ">' + timeAgo(row.last_login) + '</span>';
                         },
                     },
                     {
@@ -104,7 +134,27 @@
             $('#searchInput').on('keyup', function() {
                 table.search(this.value).draw();
             });
+            $(document).on('click', '.btn-delete', function() {
+                var id = $(this).data('id');
+                var token = $('meta[name="csrf-token"]').attr('content');
 
+                if (confirm('Apakah Anda yakin ingin menghapus user ini?')) {
+                    $.ajax({
+                        url: "{{ route('admin.user.destroy', '') }}/" + id,
+                        type: 'DELETE',
+                        data: {
+                            "_token": token,
+                        },
+                        success: function(response) {
+                            alert(response.success);
+                            table.ajax.reload(); // Refresh DataTable setelah penghapusan
+                        },
+                        error: function(xhr) {
+                            alert('Terjadi kesalahan: ' + xhr.responseText);
+                        }
+                    });
+                }
+            });
         });
     </script>
 @endsection

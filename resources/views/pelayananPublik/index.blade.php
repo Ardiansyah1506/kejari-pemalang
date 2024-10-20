@@ -109,11 +109,9 @@
 <div class="bg-[#EEB230] w-full bg-opacity-10">
     <div class="p-6 rounded-md max-w-6xl mx-auto mt-8">
         <!-- Header -->
-        <h2 class="text-lg font-semibold text-emerald-800">Forum Konsultasi Online (4)</h2>
+        <h2 class="text-lg font-semibold text-emerald-800">Forum Konsultasi Online ({{ $ForumKonsultasi->total() }})</h2>
         <hr class="my-4 border-emerald-300">
 
-        
-        
         <!-- Forum Item 1 -->
         @foreach($ForumKonsultasi as $forum)
         <div class="ml-8 mb-6">
@@ -121,7 +119,7 @@
                 <p class="font-bold text-emerald-800">Anonim</p>
                 <p class="text-gray-700 mt-2">{{ $forum->keterangan }}</p>
                 <p class="text-sm text-gray-500 mt-2">{{ $forum->created_at }}</p>
-    
+
                 @if($forum->id_forum !== null)
                     <!-- Response -->
                     <div class="bg-[#eeb230] ml-10 bg-opacity-30 p-4 mt-4 rounded-md">
@@ -135,18 +133,15 @@
             </div>
             <hr>
         </div>
-    @endforeach
-    
-      
-    </div>
+        @endforeach
 
-    <!-- Load More Button -->
-    <div class="flex justify-center mt-4">
-        <button class="bg-emerald-200 text-emerald-800 py-2 px-4 rounded-md text-sm hover:bg-emerald-300">
-            Tampilkan Lebih Banyak
-        </button>
+        <!-- Pagination Links -->
+        <div class="mt-6">
+            {{ $ForumKonsultasi->links() }} 
+        </div>
     </div>
 </div>
+
 
 @endsection
 

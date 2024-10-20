@@ -10,5 +10,5 @@ class JawabanKonsultasi extends Model
     use HasFactory;
 
     protected $table = 'jawaban_konsultasi';
-    protected $fillable = ['id_forum','jawaban',];
+    protected $fillable = ['id_forum','keterangan',];
 }

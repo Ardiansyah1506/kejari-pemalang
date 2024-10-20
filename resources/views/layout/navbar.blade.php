@@ -46,7 +46,7 @@ class="md:flex flex-wrap items-center justify-end md:justify-center bg-[#EEB230]
     <li class="md:p-6 py-2">
       <a
         class="block hover:text-black-400 text-sm hover:font-extrabold"
-        href="{{route('404')}}"
+        href="{{Route('konsultasi.index')}}"
         >Pelayanan Publik</a
       >
     </li>

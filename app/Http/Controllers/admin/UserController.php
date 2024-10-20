@@ -29,8 +29,7 @@ class UserController extends Controller
         ->addColumn('action', function ($row) {
                 return '
                 <div class="p-3 px-5 flex justify-end">
-                    <button type="button"
-                        class="btn-delete text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">Delete</button>
+                <button class="btn-delete" data-id="' . $row->id . '"><i class="fa-solid text-xl fa-trash-can  text-red-500 hover:text-red-700  py-1 px-2 rounded focus:outline-none focus:shadow-outline"></i></button>
                 </div>
                 ';
             })

@@ -18,7 +18,7 @@ class GaleriController extends Controller
         if (Auth::check()) {
             return view('admin.galeri.index', compact('pageTitle','galeri'));
         } else {
-            return redirect('/')->with('alert', 'Silahkan login terlebih dahulu!');
+            return view('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
     }
 

@@ -19,11 +19,11 @@ class PelayananPublikController extends Controller
                 'jawaban.keterangan AS jawaban',
                 'jawaban.id_forum'
             )
-            ->limit(5)
-            ->get();
-    // dd($ForumKonsultasi);
+            ->paginate(8); // Menggunakan paginate dengan limit 8
+    
         return view('pelayananPublik.index', compact('ForumKonsultasi'));
     }
+    
     
 
     public function store(Request $request) {
