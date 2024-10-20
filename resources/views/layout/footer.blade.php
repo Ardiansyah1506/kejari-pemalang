@@ -1,5 +1,5 @@
 <footer class="bg-green-800 text-white sm:px-6 py-2 md:py-6">
-    <div class="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="container mx-auto px-20  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Address -->
         <div class="flex w-full justify-center items-center">
             <img src="{{asset('logo-footer.png')}}" class="w-3/4 " alt="">
