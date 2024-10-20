@@ -1,7 +1,9 @@
-<footer class="bg-green-800 text-white py-6">
+<footer class="bg-green-800 text-white sm:px-6 py-2 md:py-6">
     <div class="container mx-auto  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Address -->
-          <img src="{{asset('logo-footer.png')}}" class="w-3/4 " alt="">
+        <div class="flex w-full justify-center items-center">
+            <img src="{{asset('logo-footer.png')}}" class="w-3/4 " alt="">
+        </div>
         <div class="grid grid-cols-1 gap-2">
             <div class="flex flex-col gap-2">
                 <h5 class="text-lg font-semibold">Kantor Pusat</h5>
