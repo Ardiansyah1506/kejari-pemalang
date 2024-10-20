@@ -19,15 +19,15 @@ Route::get('/informasi-publik/berita/{id}', [InformasiPublikController::class, '
 Route::get('/soon', [HomeController::class, 'coming_soon'])->name('404');
 Route::post('/login', [LoginController::class, 'actionLogin'])->name('actionLogin');
 
+Route::group(['prefix' => 'konsultasi', 'as' => 'konsultasi.', 'controller' => PelayananPublikController::class], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/get-data', 'getData')->name('getData');
+    Route::post('/store', 'store')->name('store');
+});
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-    
-    
-    Route::group(['prefix' => 'konsultasi', 'as' => 'konsultasi.', 'controller' => PelayananPublikController::class], function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/get-data', 'getData')->name('getData');
-        Route::post('/store', 'store')->name('store');
-    });
+
+
     Route::group(['prefix' => 'admin/galeri', 'as' => 'admin.galeri.', 'controller' => GaleriController::class], function () {
         Route::get('/', 'index')->name('index');
         Route::post('/store', 'store')->name('store');

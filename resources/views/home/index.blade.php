@@ -39,12 +39,11 @@
             @if($loop->iteration <= 2)
 
             <div class="flex md:flex-row col-span-1 md:col-span-4 flex-col-reverse gap-5 justify-center items-center p-4">
-                    <div>
-                        <h4 class="text-md font-semibold text-green-800 mb-2">{{ $berita->judul }}</h4>
+            <div>
+                        <a href="{{route('berita.detail',$berita->id)}}" class="text-md font-semibold text-green-800 mb-2">{{ $berita->judul }}</a>
                         <p class="text-gray-600 text-sm line-clamp-4">{!! $berita->deskripsi !!}</p>
                         <div class="flex justify-between text-sm items-center mt-5 text-gray-500">
                             <span class="mr-2 ">{{ $berita->created_at->format('d/m/Y') }}</span>
-                            <a href="{{route('berita.detail',$berita->id)}}">Selengkapnya...</a>
                         </div>
                     </div>
                     <img src="{{ asset('foto_berita/' . $berita->foto) }}" class="md:aspect-[4/3] md:w-1/4  " alt="">
