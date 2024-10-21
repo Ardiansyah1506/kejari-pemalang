@@ -129,7 +129,7 @@
                                 </ol>
                                 <p class="text-sm text-gray-500 mt-2">
                                     @php
-                                    $createdAt = \Carbon\Carbon::parse($data->created_at);
+                                    $createdAt = \Carbon\Carbon::parse($forum->created_at);
                                     $now = \Carbon\Carbon::now();
                     
                                     // Hitung selisih waktu
