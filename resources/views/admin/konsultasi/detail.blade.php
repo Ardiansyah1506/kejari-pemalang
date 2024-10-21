@@ -81,7 +81,35 @@
                         <ol class="list-decimal list-inside text-emerald-800 mt-2 space-y-1">
                             {!! $data->jawaban !!}
                         </ol>
-                        <p class="text-sm text-gray-500 mt-2" id="time">{{ $data->waktu_jawab }}</p>
+                        <p class="text-sm text-gray-500 mt-2 capitalize" id="time">
+                            @php
+                            $createdAt = \Carbon\Carbon::parse($data->waktu_jawab);
+                            $now = \Carbon\Carbon::now();
+            
+                            // Hitung selisih waktu
+                            $diffInMinutes = $now->diffInMinutes($createdAt);
+                            $diffInHours = $now->diffInHours($createdAt);
+                            $diffInDays = $now->diffInDays($createdAt);
+                            
+                            // Format tanggal sesuai ketentuan
+                            if ($diffInMinutes < 1) {
+                                // Jika kurang dari 1 menit
+                                echo 'baru saja';
+                            } elseif ($diffInMinutes < 60) {
+                                // Jika kurang dari 1 jam
+                                echo $diffInMinutes . ' menit yang lalu';
+                            } elseif ($diffInHours < 24) {
+                                // Jika kurang dari 1 hari
+                                echo $diffInHours . ' jam yang lalu';
+                            } elseif ($diffInDays <= 7) {
+                                // Jika kurang dari atau sama dengan 7 hari
+                                echo $createdAt->diffForHumans(); // Misal "2 hari yang lalu"
+                            } else {
+                                // Jika lebih dari 7 hari
+                                echo $createdAt->translatedFormat('l, d F Y'); // Format: "Sabtu, 05 Oktober 2024"
+                            }
+                            @endphp
+                        </p>
                     </div>
                 @else
                     <div class="mt-4 ml-6 p-3">
@@ -128,14 +156,8 @@
                     ]
                 }
             });
-
-
-            // Update waktu created_at saat halaman dimuat
-            const timeElement = document.getElementById('time');
-            const createdAt = timeElement.innerText; // Dapatkan waktu created_at
-            console.log("Original createdAt:", createdAt); // Log the original value
-            timeElement.innerText = timeAgo(createdAt); // Update elemen dengan waktu yang telah berlalu
-            console.log("Updated time:", timeElement.innerText); // Log the updated value
+            
+            
 
             
             // Saat tombol submit ditekan
@@ -173,30 +195,6 @@
                 });
             });
 
-            function timeAgo(date) {
-                const now = new Date();
-                const past = new Date(date);
-                const diffInSeconds = Math.floor((now - past) / 1000);
-                const diffInMinutes = Math.floor(diffInSeconds / 60);
-                const diffInHours = Math.floor(diffInMinutes / 60);
-                const diffInDays = Math.floor(diffInHours / 24);
-
-                if (diffInMinutes < 60) {
-                    return `${diffInMinutes} menit yang lalu`;
-                } else if (diffInHours < 24) {
-                    return `${diffInHours} jam yang lalu`;
-                } else if (diffInDays === 1) {
-                    return `Kemarin`;
-                } else if (diffInDays < 7) {
-                    return `${diffInDays} hari yang lalu`;
-                } else {
-                    return past.toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric'
-                    });
-                }
-            }
         });
     </script>
 @endsection
