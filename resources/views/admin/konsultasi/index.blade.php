@@ -16,6 +16,7 @@
     </style>
 @endsection
 
+
 @section('content')
     @if (session('success'))
         <div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
@@ -40,31 +41,25 @@
 
     <div class="text-gray-900 bg-white rounded shadow-md w-full">
         <div class="p-4 overflow-x-auto data-container">
-            <table class="w-full text-sm md:text-md mb-4" id="beritaTable">
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Nama</th>
-                        <th>Keterangan</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
+            <table class="w-[100vw] md:w-full text-sm md:text-md mb-4 overflow-x-auto" id="beritaTable">
                 <tbody>
                     @foreach ($data as $forum)
-                        <tr>
-                            <td>
+                        <tr class="border-b-2 p-2">
+                            <td class="w-[15vw] md:w-auto">
                                 <span
-                                    class="{{ $forum->id_forum == null ? 'bg-blue-200' : 'bg-green-200' }} p-2 rounded-sm">
+                                    class="{{ $forum->id_forum == null ? 'bg-blue-200' : 'bg-green-200' }} p-2 rounded-sm text-xs md:text-sm">
                                     {{ $forum->id_forum == null ? 'Baru' : 'Terjawab' }}
                                 </span>
                             </td>
-                            <td>{{ $forum->nama }}</td>
-                            <td>{{ $forum->keterangan }}</td>
-                            <td class="flex">
-                                <a href="{{ route('admin.konsultasi.detail', $forum->id) }}"><i
-                                        class="fa-regular fa-eye p-3 rounded-sm bg-yellow-300 text-white p-2 md:p-3 md:text-md text-sm text-center inline-block"></i></a>
-                                <button class="delete-btn" data-id="{{ $forum->id }}"><i
-                                        class="fa-regular fa-trash-can p-2 md:p-3 md:text-md text-sm rounded-sm bg-red-300"></i></button>
+                            <td class="text-xs w-[30vw] md:w-auto md:text-sm">{{ $forum->nama }}</td>
+                            <td class="text-xs w-[50vw] md:w-auto md:text-sm">{{ $forum->keterangan }}</td>
+                            <td class="flex space-x-2 w-[10vw] md:w-auto">
+                                <a href="{{ route('admin.konsultasi.detail', $forum->id) }}">
+                                    <i class="fa-regular fa-eye p-2 md:p-3 md:text-md text-sm text-center inline-block bg-yellow-300 text-white rounded-sm"></i>
+                                </a>
+                                <button class="delete-btn" data-id="{{ $forum->id }}">
+                                    <i class="fa-regular fa-trash-can p-2 md:p-3 md:text-md text-sm rounded-sm bg-red-300 text-white"></i>
+                                </button>
                             </td>
                         </tr>
                     @endforeach
@@ -74,11 +69,11 @@
             <!-- Tombol Pagination -->
             <div class="mt-4">
                 {{ $data->links('vendor.pagination.tailwind') }}
-
             </div>
         </div>
     </div>
 @endsection
+
 
 @section('js-library')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

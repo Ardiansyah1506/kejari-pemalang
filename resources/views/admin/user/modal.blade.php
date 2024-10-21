@@ -3,7 +3,7 @@
     <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-xl">
         <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
             <div class="flex justify-between items-center p-4 pb-0">
-                <h1 class="md:text-xl text-sm" id="modal-title">Tambah Berita</h1>
+                <h1 class="md:text-xl text-sm" id="modal-title">Tambah User</h1>
                 <button type="button" class="py-2 px-4 rounded hover:bg-gray-100 mr-2" onclick="toggleModal()">
                     &#10005;</button>
             </div>
