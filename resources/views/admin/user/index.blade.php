@@ -123,10 +123,12 @@
                         data: 'status',
                         render: function(data, type, row) {
                             // Menggunakan eval untuk mengeksekusi HTML dari data status
-                            return row.is_online == 1 ?
-                                '<span class="bg-green-400 p-2">Online</span>' :
-                                '<span class="text-gray-600 p-2 ">' + timeAgo(row.last_login) +
-                                '</span>';
+                            return row.is_online == 1 ? 
+    '<span class="bg-green-400 p-2">Online</span>' :
+    (row.last_login ? 
+        '<span class="text-gray-600 p-2">' + timeAgo(row.last_login) + '</span>' : 
+        '<span class="text-gray-600 text-xl font-bold p-2">-</span>');
+
                         },
                     },
                     {
@@ -158,7 +160,12 @@
                             "_token": token,
                         },
                         success: function(response) {
-                            alert(response.success);
+                            Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil!',
+                        text: response.message,
+                        confirmButtonText: 'OK'
+                    });
                             table.ajax.reload(); // Refresh DataTable setelah penghapusan
                         },
                         error: function(xhr) {

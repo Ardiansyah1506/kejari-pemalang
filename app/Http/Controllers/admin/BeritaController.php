@@ -76,42 +76,50 @@ class BeritaController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
+        // Validasi input
+        $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'foto' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+    
+        // Ambil data berita berdasarkan ID
         $id = $request->id;
         $berita = Berita::find($id);
-        $berita->judul = $request->judul;
-        $publisher = Auth::user()->username;
-        $berita->publisher = $publisher;
-        $berita->deskripsi = $request->deskripsi;
+        
         if (!$berita) {
             Log::error("Berita dengan ID {$id} tidak ditemukan.");
             return redirect()->back()->withErrors(['error' => 'Berita tidak ditemukan.']);
         }
+    
+        // Update data berita
+        $berita->judul = $request->judul;
+        $publisher = Auth::user()->username;
+        $berita->publisher = $publisher;
+        $berita->deskripsi = $request->deskripsi;
+    
+        // Log detail update
         Log::info("Memperbarui berita ID {$id}: ", [
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'foto' => $request->hasFile('foto') ? 'Ada' : 'Tidak ada',
         ]);
+    
+        // Proses upload file foto jika ada
         if ($request->hasFile('foto')) {
-            // Hapus foto lama jika ada
-            if ($berita->foto) {
-                Storage::disk('public')->delete($berita->foto);
-            }
             $file = $request->file('foto');
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('foto_berita'), $fileName);
             $berita->foto = $fileName; // simpan nama file
-        }
-
+        }   
+    
         $berita->save();
         Log::info("Berita ID {$id} berhasil diperbarui.");
-
+    
+        // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Berita berhasil diperbarui.');
     }
+    
 
     public function destroy($id)
     {

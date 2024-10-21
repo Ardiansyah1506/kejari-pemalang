@@ -1,4 +1,4 @@
-<!-- Modal untuk Tambah dan Edit Berita -->
+<!-- Modal untuk Tambah Berita -->
 <div class="fixed z-10 overflow-y-auto  top-0 w-full left-0 hidden" id="modal">
     <div class="p-10 xs:p-0 h-1/2 mx-auto md:w-full md:max-w-xl">
         <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
@@ -11,10 +11,10 @@
             <div class="px-5 py-7">
                 <form id="form-berita" method="POST" enctype="multipart/form-data" class="flex gap-2 flex-col">
                     @csrf
-                    <input type="hidden" name="id" id="berita_id">
+                    <input type="hidden" name="id" id="id">
                     <div>
                         <label class="font-semibold text-sm text-gray-600 pb-1 block">Judul Berita</label>
-                        <input type="text" name="judul" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required />
+                        <input type="text" name="judul" id="judul" class="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full" required />
                     </div>
 
                     <div>
@@ -39,12 +39,12 @@
                                     and drop
                                 </p>
                             </div>
-                            <input id="foto" name="foto" type="file" class="hidden" required />
+                            <input id="foto" name="foto" type="file"  required />
                         </label>
                     </div>
                 </div>
                 <small id="link" class=" flex w-full justify-end">
-                </small>                        
+                </small> 
                 <div class="flex justify-center items-center p-3">
                     <button type="submit" class="transition duration-200 bg-[#006E61] bg-opacity-50 hover:bg-opacity-100  focus:bg-[#006E61] focus:bg-opacity-100 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
                         <span class="inline-block mr-2">Simpan</span>
@@ -56,5 +56,6 @@
         </div>
     </div>
 </div>
+
 
 

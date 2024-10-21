@@ -7,16 +7,15 @@
         .bg-custom-green {
             background: #228d81;
         }
-   
     </style>
 @endsection
 
 @section('content')
-    @if (session('success'))
-        <div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
-            {{ session('success') }}
-        </div>
-    @endif
+@if (session('success'))
+<div class="bg-green-500 text-white p-4 rounded mb-4 hidden" id="successMessage">
+    {{ session('success') }}
+</div>
+@endif
 
     <div class="flex md:flex-row flex-col-reverse gap-4 justify-between items-end mb-4 ">
         <div class="relative w-full md:w-1/2">
@@ -38,7 +37,7 @@
 
     <!-- component -->
     <div class="text-gray-900 bg-white rounded shadow-md w-full">
-        <div class="md:p-4 overflow-x-auto">
+        <div class="p-4 overflow-x-auto">
             <table class="w-full text-sm md:text-md mb-4" id="beritaTable">
                 <thead>
                     <tr class="border-b">
@@ -47,15 +46,15 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
+                <tbody>
 
                 </tbody>
 
             </table>
 
         </div>
-        @include('admin.berita.modal')
     </div>
+    @include('admin.berita.modal')
 @endsection
 
 @section('js-library')
@@ -63,6 +62,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('vendor/quill/quill.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @endsection
 
 @section('js-custom')
@@ -95,6 +95,11 @@
                 }
             });
 
+            // Fungsi untuk menangani submit
+            document.querySelector('#form-berita').onsubmit = function() {
+                var descriptionInput = document.querySelector('#deskripsi');
+                descriptionInput.value = quill.root.innerHTML;
+            };
             if ($('#successMessage').length) {
                 const message = $('#successMessage').text().trim();
                 if (message) {
@@ -106,16 +111,11 @@
                     });
                 }
             }
-            // Fungsi untuk menangani submit
-            document.querySelector('#form-berita').onsubmit = function() {
-                var descriptionInput = document.querySelector('#deskripsi');
-                descriptionInput.value = quill.root.innerHTML;
-            };
 
             // Saat tombol tambah berita ditekan
             $('#createNew').click(function() {
                 $('#modal-title').text('Tambah Berita');
-                $('#berita_id').val(''); // Kosongkan ID
+                $('#id').val(''); // Kosongkan ID
                 quill.setText(''); // Kosongkan editor
                 $('#form-berita').attr('action',
                     "{{ route('admin.berita.store') }}"); // Set action ke store
@@ -137,17 +137,16 @@
                     type: "GET",
                     success: function(data) {
                         console.log(data); // Tambahkan ini untuk debug
-                        $('#berita_id').val(data.id);
+                        $('#id').val(data.id);
                         $('input[name="judul"]').val(data.judul);
                         quill.root.innerHTML = data.deskripsi;
                         if (data.foto) {
                             // Jika ada foto, buat elemen link
                             let fotoUrl = `{{ asset('foto_berita/${data.foto}') }}`;
                             $('#link').html(
-                                `<a href="${fotoUrl}" class="bg-blue-100 w-full text-blue-600 py-1 p-2 rounded-sm  " target="_blank" >Link Gambar</a>`
+                                `<a href="${fotoUrl}" class="bg-blue-100 w-full text-blue-600 py-1 p-2 rounded-sm" target="_blank">Link Gambar</a>`
                             );
                             console.log($('#link').html());
-
                         } else {
                             console.log("Tidak ada gambar."); // Tambahkan ini
                             // Jika tidak ada foto, tampilkan teks
@@ -159,12 +158,12 @@
                     }
                 });
             });
-
+            
             $(document).on('click', '.btn-delete', function(e) {
                 e.preventDefault();
                 console.log('test')
                 const id = $(this).data('id');
-                const url = `{{ route('admin.berita.destroy', ':id') }}`.replace(':id', id);
+                console.log(id)
                 if (confirm("Apakah Anda yakin ingin menghapus berita ini?")) {
                     $.ajax({
                         url: "{{ route('admin.berita.destroy', '') }}/" + id,
@@ -180,18 +179,22 @@
                                 confirmButtonText: 'OK'
                             });
                             $('#beritaTable').DataTable().ajax
-                                .reload(); // Reload tabel setelah data dihapus
+                        .reload(); // Reload tabel setelah data dihapus
                         },
                         error: function(xhr) {
-                            alert('Gagal menghapus data');
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Gagal!',
+                                text: 'Gagal Menghapus Data',
+                                confirmButtonText: 'OK'
+                            });
                         }
                     });
                 }
             });
-
+          
 
             let table = $('#beritaTable').DataTable({
-                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.berita.getData') }}",
@@ -224,7 +227,7 @@
                 table.search(this.value).draw();
             });
 
-
+          
         });
     </script>
 @endsection
