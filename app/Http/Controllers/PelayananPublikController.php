@@ -36,7 +36,7 @@ class PelayananPublikController extends Controller
             'email' => ['required', 'string', 'max:255'],
             'nohp' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'], // Validasi nomor telepon dengan regex
             'keterangan' => ['required', 'string', 'min:8'], // validasi keterangan minimal 8 karakter
-            'dokumen' => ['required', 'file', 'mimes:pdf,doc,docx'], // validasi tipe file
+            'dokumen' => [ 'file', 'mimes:pdf,doc,docx'], // validasi tipe file
         ]);
     
         $ForumKonsultasi = new ForumKonsultasi();

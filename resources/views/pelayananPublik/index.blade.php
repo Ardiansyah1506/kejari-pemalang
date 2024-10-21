@@ -19,31 +19,31 @@
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-1">
                     <div>
-                        <label for="nama" class="block mb-2 text-sm font-medium">Nama Lengkap</label>
+                        <label for="nama" class="block mb-2 text-sm font-medium">Nama Lengkap<span class="text-red-500 text-sm">*</span></label>
                         <input type="text" id="nama" name="nama"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Masukkan Nama Anda" required />
                     </div>
                     <div>
-                        <label for="alamat" class="block mb-2 text-sm font-medium">Alamat</label>
+                        <label for="alamat" class="block mb-2 text-sm font-medium">Alamat <span class="text-red-500 text-sm">*</span></label>
                         <input type="text" id="alamat" name="alamat"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Masukkan Alamat Anda" required />
                     </div>
                     <div>
-                        <label for="email" class="block mb-2 text-sm font-medium">Email</label>
+                        <label for="email" class="block mb-2 text-sm font-medium">Email<span class="text-red-500 text-sm">*</span></label>
                         <input type="email" id="email" name="email"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="Masukkan Email Anda" required />
                     </div>
                     <div>
-                        <label for="nohp" class="block mb-2 text-sm font-medium">Nomor Telepon</label>
+                        <label for="nohp" class="block mb-2 text-sm font-medium">Nomor Telepon<span class="text-red-500 text-sm">*</span></label>
                         <input type="tel" id="nohp" name="nohp"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="085******" pattern="[0-9]{10,15}" required />
                     </div>
                     <div>
-                        <label for="keterangan" class="block mb-2 text-sm font-medium">Keterangan</label>
+                        <label for="keterangan" class="block mb-2 text-sm font-medium">Keterangan<span class="text-red-500 text-sm">*</span></label>
                         <textarea id="keterangan" name="keterangan" rows="4"
                             class="block p-2.5 w-full text-sm rounded-lg border focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Masukkan keterangan tambahan" required></textarea>
@@ -65,7 +65,7 @@
                                         and drop
                                     </p>
                                 </div>
-                                <input id="dokumen" name="dokumen" type="file" class="hidden" required />
+                                <input id="dokumen" name="dokumen" type="file" class="hidden"  />
                             </label>
                         </div>
                     </div>
