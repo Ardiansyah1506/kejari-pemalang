@@ -110,13 +110,6 @@
 @section('js-custom')
     <script>
         $(document).ready(function() {
-            // Update waktu created_at saat halaman dimuat
-            const timeElement = document.getElementById('time');
-            const createdAt = timeElement.innerText; // Dapatkan waktu created_at
-            console.log("Original createdAt:", createdAt); // Log the original value
-            timeElement.innerText = timeAgo(createdAt); // Update elemen dengan waktu yang telah berlalu
-            console.log("Updated time:", timeElement.innerText); // Log the updated value
-
             var quill = new Quill('#editor', {
                 theme: 'snow',
                 modules: {
@@ -137,6 +130,14 @@
             });
 
 
+            // Update waktu created_at saat halaman dimuat
+            const timeElement = document.getElementById('time');
+            const createdAt = timeElement.innerText; // Dapatkan waktu created_at
+            console.log("Original createdAt:", createdAt); // Log the original value
+            timeElement.innerText = timeAgo(createdAt); // Update elemen dengan waktu yang telah berlalu
+            console.log("Updated time:", timeElement.innerText); // Log the updated value
+
+            
             // Saat tombol submit ditekan
             $(document).on('click', '#btn', function(e) {
                 e.preventDefault(); // Prevent default form submission
