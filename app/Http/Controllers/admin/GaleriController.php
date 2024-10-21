@@ -13,16 +13,16 @@ class GaleriController extends Controller
 {
     public function index()
     {
-        $galeri = Galeri::all();
-        $user= Auth::user();
-        $pageTitle = 'Berita';
+        $galeri = Galeri::orderBy('created_at', 'desc')->get(); // Mengurutkan berdasarkan created_at
+        $user = Auth::user();
+        $pageTitle = 'Galeri';
         if (Auth::check()) {
-            return view('admin.galeri.index', compact('user','pageTitle','galeri'));
+            return view('admin.galeri.index', compact('user', 'pageTitle', 'galeri'));
         } else {
-            return view('home')->with('alert', 'Silahkan login terlebih dahulu!');
+            return redirect('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
     }
-
+    
 
     public function store(Request $request)
     {

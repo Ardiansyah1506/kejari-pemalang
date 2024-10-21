@@ -16,7 +16,8 @@ class KonsultasiController extends Controller
     {
         $pageTitle = 'Forum Konsultasi';
         $user = Auth::user();
-        // Query untuk data dengan left join dan filter pencarian
+    
+        // Query untuk data dengan left join dan filter pencarian, diurutkan berdasarkan created_at
         $data = ForumKonsultasi::leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
                 'forum_konsultasi.id',
@@ -25,20 +26,22 @@ class KonsultasiController extends Controller
                 'jawaban.keterangan AS jawaban',
                 'jawaban.id_forum'
             )
+            ->orderBy('forum_konsultasi.created_at', 'desc') // Urutkan berdasarkan created_at secara descending
             ->paginate(10);
-
+    
         if (Auth::check()) {
             return view('admin.konsultasi.index', compact('user', 'pageTitle', 'data'));
         } else {
             return redirect()->route('home')->with('alert', 'Silahkan login terlebih dahulu!');
         }
     }
+    
 
     public function search(Request $request)
     {
         $search = $request->input('search');
-
-        // Query untuk data dengan filter pencarian
+    
+        // Query untuk data dengan filter pencarian dan urutan berdasarkan created_at
         $data = ForumKonsultasi::leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
                 'forum_konsultasi.id',
@@ -51,8 +54,9 @@ class KonsultasiController extends Controller
                 return $query->where('forum_konsultasi.nama', 'LIKE', "%{$search}%")
                     ->orWhere('forum_konsultasi.keterangan', 'LIKE', "%{$search}%");
             })
-            ->paginate(10); // Pagination dengan 10 item per halaman
-
+            ->orderBy('forum_konsultasi.created_at', 'desc') // Urutkan berdasarkan created_at secara descending
+            ->paginate(10);
+    
         return response()->json([
             'data' => $data->items(),
             'current_page' => $data->currentPage(),
@@ -60,14 +64,15 @@ class KonsultasiController extends Controller
             'total' => $data->total(),
         ]);
     }
+    
 
 
     public function getData(Request $request)
     {
         // Ambil input pencarian jika ada
         $search = $request->input('search');
-
-        // Query untuk data dengan left join dan filter pencarian
+    
+        // Query untuk data dengan left join, filter pencarian, dan urutan berdasarkan created_at
         $data = ForumKonsultasi::leftJoin('jawaban_konsultasi AS jawaban', 'jawaban.id_forum', '=', 'forum_konsultasi.id')
             ->select(
                 'forum_konsultasi.id',
@@ -81,16 +86,17 @@ class KonsultasiController extends Controller
                 return $query->where('forum_konsultasi.nama', 'like', "%{$search}%")
                     ->orWhere('forum_konsultasi.keterangan', 'like', "%{$search}%");
             })
-            ->paginate(10); // Pagination dengan 10 item per halaman
-
+            ->orderBy('forum_konsultasi.created_at', 'desc') // Urutkan berdasarkan created_at secara descending
+            ->paginate(10);
+    
         // Jika request datang dari AJAX, kembalikan data tabel saja
         if ($request->ajax()) {
             return response()->json($data);
         }
-
+    
         return response()->json(['error' => 'Invalid request'], 400); // Jika bukan AJAX, return error
     }
-
+    
 
     public function detail($id)
     {

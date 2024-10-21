@@ -13,7 +13,7 @@ class HomeController extends Controller
     }
     public function index(){
         $user = Auth::user();
-        $data = Berita::limit(6)->get();
+        $data = Berita::orderBy('created_at', 'desc')->limit(6)->get();
         return view('home.index' ,compact('user','data'));
     }
 

@@ -24,7 +24,7 @@ class BeritaController extends Controller
 
     public function getData()
     {
-        $berita = Berita::all();
+        $berita = Berita::orderBy('created_at', 'desc')->get();
         return datatables()->of($berita)
             ->addColumn('action', function ($row) {
                 return '

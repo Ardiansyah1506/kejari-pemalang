@@ -34,7 +34,7 @@
                                     and drop
                                 </p>
                             </div>
-                            <input id="foto" name="foto" type="file" class="hidden" required />
+                            <input id="foto" name="foto" type="file" class="hidden"  />
                         </label>
                     </div>
                 </div>

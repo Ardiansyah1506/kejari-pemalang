@@ -37,7 +37,7 @@ class InformasiPublikController extends Controller
     
     public function galeri(){
         $user = Auth::user();
-        $galeri = Berita::latest()->get();
+        $galeri = Galeri::latest()->get();
         return view('informasiPublik.galeri', compact( 'galeri','user'));
     }
     public function Detailberita($id){

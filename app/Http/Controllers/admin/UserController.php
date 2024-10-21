@@ -25,7 +25,7 @@ class UserController extends Controller
     }
     public function getData()
     {
-        $user = User::all();
+        $user = User::orderBy('created_at', 'desc')->get();
         return datatables()->of($user)
             ->addColumn('action', function ($row) {
                 return '
