@@ -147,7 +147,7 @@
                         },
                         success: function(response) {
                             // Reload the page or remove the row from the table
-                            location.reload(); // Reloads the page after deletion
+                            $(e.target).closest('tr').remove(); // Remove the row of the deleted item
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Berhasil!',
