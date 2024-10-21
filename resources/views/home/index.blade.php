@@ -24,8 +24,8 @@
         <div class="relative z-10 bg-black bg-opacity-50 h-full flex items-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-xl md:text-5xl text-white font-bold mb-2">Tegakkan Keadilan Bersama Kami!</h2>
-                <p class="text-white md:text-x; text-sm mb-4">Lindungi hak Anda dan dapatkan layanan hukum terbaik.</p>
-                <a href="#" class="bg-[#71809640] text-white px-px-2 py-2 md:px-4 md:py-2 rounded">Layanan Publik</a>
+                <p class="text-white md:text-xl text-sm mb-10">Lindungi hak Anda dan dapatkan layanan hukum terbaik.</p>
+                <a href="{{route('konsultasi.index')}}" class="bg-[#454c5640] hover:bg-[#2d2f3140] text-white px-px-2 py-2 md:px-6 md:py-4 font-bold rounded">Layanan Publik</a>
             </div>
         </div>
     </section>
