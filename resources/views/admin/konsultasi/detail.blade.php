@@ -64,7 +64,7 @@
                             <a href="{{ asset('berkas_konsultasi/' . $data->dokumen_pendukung) }}" target="_blank"
                                 class="text-md border border-1 rounded-md p-2 flex items-center gap-2">
                                 <i class="fa-solid fa-file-arrow-down text-gray-400 text-xl"></i>
-                                <span class="text-sm text-green-400">Unduh Dokumen</span>
+                                <span class="text-sm text-green-400">Lihat Dokumen</span>
                             </a>
                         @else
                             <span class="text-sm text-red-500">Dokumen tidak tersedia</span>
