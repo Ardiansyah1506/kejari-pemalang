@@ -43,26 +43,34 @@
         <div class="p-4 overflow-x-auto data-container">
             <table class="w-[100vw] md:w-full text-sm md:text-md mb-4 overflow-x-auto" id="beritaTable">
                 <tbody>
-                    @foreach ($data as $forum)
-                        <tr class="border-b-2 p-2">
-                            <td class="w-[15vw] md:w-auto">
-                                <span
-                                    class="{{ $forum->id_forum == null ? 'bg-blue-200' : 'bg-green-200' }} p-2 rounded-sm text-xs md:text-sm">
-                                    {{ $forum->id_forum == null ? 'Baru' : 'Terjawab' }}
-                                </span>
-                            </td>
-                            <td class="text-xs w-[30vw] md:w-auto md:text-sm">{{ $forum->nama }}</td>
-                            <td class="text-xs w-[50vw] md:w-auto md:text-sm">{{ $forum->keterangan }}</td>
-                            <td class="flex space-x-2 w-[10vw] md:w-auto">
-                                <a href="{{ route('admin.konsultasi.detail', $forum->id) }}">
-                                    <i class="fa-regular fa-eye p-2 md:p-3 md:text-md text-sm text-center inline-block bg-yellow-300 text-white rounded-sm"></i>
-                                </a>
-                                <button class="delete-btn" data-id="{{ $forum->id }}">
-                                    <i class="fa-regular fa-trash-can p-2 md:p-3 md:text-md text-sm rounded-sm bg-red-300 text-white"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if ($data->isEmpty())
+                        <div class="flex justify-center items-center p-4">
+                            <p class="text-gray-600 text-md">Data Masih Kosong</p>
+                        </div>
+                    @else
+                        @foreach ($data as $forum)
+                            <tr class="border-b-2 p-2">
+                                <td class="w-[15vw] md:w-auto">
+                                    <span
+                                        class="{{ $forum->id_forum == null ? 'bg-blue-200' : 'bg-green-200' }} p-2 rounded-sm text-xs md:text-sm">
+                                        {{ $forum->id_forum == null ? 'Baru' : 'Terjawab' }}
+                                    </span>
+                                </td>
+                                <td class="text-xs w-[30vw] md:w-auto md:text-sm">{{ $forum->nama }}</td>
+                                <td class="text-xs w-[50vw] md:w-auto md:text-sm">{{ $forum->keterangan }}</td>
+                                <td class="flex space-x-2 w-[10vw] md:w-auto">
+                                    <a href="{{ route('admin.konsultasi.detail', $forum->id) }}">
+                                        <i
+                                            class="fa-regular fa-eye p-2 md:p-3 md:text-md text-sm text-center inline-block bg-yellow-300 text-white rounded-sm"></i>
+                                    </a>
+                                    <button class="delete-btn" data-id="{{ $forum->id }}">
+                                        <i
+                                            class="fa-regular fa-trash-can p-2 md:p-3 md:text-md text-sm rounded-sm bg-red-300 text-white"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                 </tbody>
             </table>
 
@@ -135,14 +143,16 @@
 
                 if (confirm("Apakah Anda yakin ingin menghapus berita ini?")) {
                     $.ajax({
-                        url: "{{ route('admin.konsultasi.destroy', '') }}/" +  id, // Ensure this URL is correct
+                        url: "{{ route('admin.konsultasi.destroy', '') }}/" +
+                        id, // Ensure this URL is correct
                         type: 'DELETE',
                         data: {
                             "_token": token,
                         },
                         success: function(response) {
                             // Reload the page or remove the row from the table
-                            $(e.target).closest('tr').remove(); // Remove the row of the deleted item
+                            $(e.target).closest('tr')
+                        .remove(); // Remove the row of the deleted item
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Berhasil!',

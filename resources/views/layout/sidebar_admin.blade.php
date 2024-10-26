@@ -80,7 +80,6 @@
             <a href="{{ route('logout') }}" id="logoutButton"
                 class="flex items-center  opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="mr-3"><img src="{{ asset('logout-icon.png') }}" alt=""></i> Logout
-
             </a>
 
         </nav>

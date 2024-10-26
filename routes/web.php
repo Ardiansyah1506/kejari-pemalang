@@ -37,12 +37,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/delete/{id}', 'destroy')->name('destroy');
     });
 
-    Route::group(['prefix' => 'admin/user', 'as' => 'admin.user.', 'controller' => UserController::class], function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/get-data', 'getData')->name('getData');
-        Route::post('/store', 'tambahUser')->name('store');
-        Route::delete('/delete/{id}', 'destroy')->name('destroy');
-    });
+        Route::group(['prefix' => 'admin/user', 'as' => 'admin.user.', 'controller' => UserController::class], function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/get-data', 'getData')->name('getData');
+            Route::post('/store', 'tambahUser')->name('store');
+            Route::delete('/delete/{id}', 'destroy')->name('destroy');
+        });
 
     Route::group(['prefix' => 'admin/berita', 'as' => 'admin.berita.', 'controller' => BeritaController::class], function () {
         Route::get('/', 'index')->name('index');

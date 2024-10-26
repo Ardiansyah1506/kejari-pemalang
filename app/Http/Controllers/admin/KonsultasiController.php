@@ -28,7 +28,6 @@ class KonsultasiController extends Controller
             )
             ->orderBy('forum_konsultasi.created_at', 'desc') // Urutkan berdasarkan created_at secara descending
             ->paginate(10);
-    
         if (Auth::check()) {
             return view('admin.konsultasi.index', compact('user', 'pageTitle', 'data'));
         } else {

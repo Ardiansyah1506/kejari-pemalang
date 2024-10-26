@@ -25,15 +25,20 @@
     <div class="container mx-auto px-6 py-10 rounded-lg">
         <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Galeri</h3>
         <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
+        @if ($galeri->isEmpty())
+            <div class="flex justify-center items-center p-4">
+                <p class="text-gray-600 text-md">Data belum tersedia</p>
+            </div>
+        @else
         <div class="grid md:grid-cols-4 grid-cols-2  gap-4 grid-row-2">
             <div class=" row-span-2 aspect-[4/3] col-span-2">
                 <img class="w-full h-full object-cover rounded-md"
                     src="{{asset('foto_galeri/'.$galeriFirst->foto)}}" alt="Random image">
             </div>
 
+         
                 @foreach ($galeri as $data)
                 @if ($loop->iteration < 4)
-                    
                     <div class="relative  col-span-1 row-span-1 ">
                         <img class="w-full h-full object-cover rounded-md"
                             src="{{asset('foto_galeri/'.$data->foto)}}" alt="Random image">
@@ -55,12 +60,18 @@
                     @endif
                   
                 @endforeach
-        </div>
+            </div>
+            @endif
      
      
         <h3 class="text-2xl font-semibold text-green-800 mb-1 mt-20 ">BERITA</h3>
         <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
 
+        @if ($berita->isEmpty())
+        <div class="flex justify-center items-center p-4">
+            <p class="text-gray-600 text-md">Data belum tersedia</p>
+        </div>
+    @else
         <div class="grid md:grid-cols-4 grid-cols-1 gap-6">
             @foreach ($berita as $data)
                 <div
@@ -80,6 +91,7 @@
         <a href="{{route('berita')}}" class="block text-[#006E61] text-center w-full p-2 border shadow-sm">
             Lihat Semua Berita
         </a>
+        @endif
         
     </div>
 @endsection

@@ -112,6 +112,11 @@
             </h2>
             <hr class="my-4 border-emerald-300">
 
+            @if ($ForumKonsultasi->isEmpty())
+            <div class="flex justify-center items-center p-4">
+                <p class="text-gray-600 text-md">Data Forum Kosong</p>
+            </div>
+        @else
             <!-- Forum Item 1 -->
             @foreach ($ForumKonsultasi as $forum)
                 <div class="md:ml-8 ml-0 mb-6">
@@ -162,7 +167,7 @@
                     <hr>
                 </div>
             @endforeach
-
+@endif
             <!-- Pagination Links -->
             <div class="mt-6">
                 {{ $ForumKonsultasi->links() }}
