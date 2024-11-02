@@ -33,7 +33,7 @@ class PelayananPublikController extends Controller
         $credentials = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'alamat' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'max:255'],
             'nohp' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'], // Validasi nomor telepon dengan regex
             'keterangan' => ['required', 'string', 'min:8'], // validasi keterangan minimal 8 karakter
             'dokumen' => [ 'nullable','file', 'mimes:pdf,doc,docx'], // validasi tipe file

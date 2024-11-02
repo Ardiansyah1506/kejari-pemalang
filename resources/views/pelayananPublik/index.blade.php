@@ -31,10 +31,10 @@
                             placeholder="Masukkan Alamat Anda" required />
                     </div>
                     <div>
-                        <label for="email" class="block mb-2 text-sm font-medium">Email<span class="text-red-500 text-sm">*</span></label>
+                        <label for="email" class="block mb-2 text-sm font-medium">Email</label>
                         <input type="email" id="email" name="email"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            placeholder="Masukkan Email Anda" required />
+                            placeholder="Masukkan Email Anda"/>
                     </div>
                     <div>
                         <label for="nohp" class="block mb-2 text-sm font-medium">Nomor Telepon<span class="text-red-500 text-sm">*</span></label>
