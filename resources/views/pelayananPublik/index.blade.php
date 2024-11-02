@@ -79,7 +79,7 @@
 
             <div class="text-sm md:w-1/3 flex flex-col gap-2">
                 <h2 class="text-2xl">Tahapan</h2>
-                <div class="list-decimal flex flex-col gap-5 md-2 md:ml-4">
+                <div class="list-decimal flex flex-col gap-5 md-2 md:ml-6">
                     <li>
                         Silakan mengisi formulir yang tersedia. Masukan informasi dasar
                         seperti nama lengkap, alamat, email, dan nomor telepon. Tambahkan
@@ -92,14 +92,22 @@
                     </li>
                     <li>
                         Setelah mengisi semua informasi yang diperlukan, klik kirim
-                        formulir. Anda akan menerima email konfirmasi yang menyatakan
-                        bahwa permintaan konsultasi hukum sudah ter-submit dan akan
-                        ditinjau lebih lanjut.
+                        formulir. Anda akan menerima WhatsApp konfirmasi yang menyatakan
+                        bahwa pertanyaan konsultasi hukum sudah ter-submit.
                     </li>
                     <li>
-                        Setelah formulir diterima dan ditinjau, Anda dapat menjadwalkan
-                        pertemuan dengan pengacara. Pastikan Anda telah menyiapkan dokumen
-                        dan informasi yang relevan sebelum sesi konsultasi dimulai.
+                        Pertanyaan Anda diterima dan akan ditinjau segera oleh JPN, 
+                        dan dalam waktu 3x23 jam Anda akan mendapatkan notifikasi
+                        WhatsApp bahwa pertanyaan anda telah dijawab. 
+                    </li>
+                    <li>
+                        Jawaban dapat dicek melaui laman website datunkejaripemalang.com
+                    </li>
+                    <li>
+                        Apabila Anda kurang puas terhadap jawaban yang diberikan
+                        Anda dapat datang secara langsung ke Kantor Jaksa Pengacara
+                        Negara pada Kejaksaan Negeri Pemalang untuk mendapatkan
+                        konsultasi lebih lanjut.
                     </li>
                 </div>
             </div>
