@@ -86,7 +86,7 @@
                         deskripsi singkat mengenai permasalahan hukum yang dihadapi.
                     </li>
                     <li>
-                        Jika tersedia, unggah dokumen seperti foto, 
+                        Jika tersedia, unggah dokumen pendukung seperti foto, 
                         atau dokumen lainnya yang relevan dengan permasalahan
                         hukum.
                     </li>
