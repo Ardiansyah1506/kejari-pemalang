@@ -192,17 +192,19 @@
                 url: "{{ route('admin.konsultasi.store') }}",
                 type: "POST",
                 data: data,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest' // Common header for AJAX requests
+                },
                 success: async function (response) {
                     alert("Jawaban berhasil dikirim.");
                     console.log("Sending WhatsApp message...");
-
                     try {
                         const fetching = await fetch('https://express-wa-api-production.up.railway.app/send-message', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({number: number,message: message }),
+                            body: JSON.stringify({ number: number, message: message }),
                         });
 
                         if (!fetching.ok) {
@@ -220,6 +222,7 @@
                     alert("Gagal mengirim jawaban.");
                 }
             });
+
         });
 
 
