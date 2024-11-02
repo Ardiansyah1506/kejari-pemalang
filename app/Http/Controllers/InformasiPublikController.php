@@ -23,8 +23,7 @@ class InformasiPublikController extends Controller
         $galeri = Galeri::whereNotIn('id', $excludedIds)->limit(4)->latest()->get();
         
         // Debugging hasil
-        // dd($galeri);
-        
+        // dd($galeriFirst);
         // Kembalikan view dengan data
         return view('informasiPublik.index', compact('user', 'galeri', 'berita', 'galeriFirst'));
     }

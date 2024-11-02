@@ -25,7 +25,7 @@
     <div class="container mx-auto px-6 py-10 rounded-lg">
         <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Galeri</h3>
         <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
-        @if ($galeri->isEmpty())
+        @if (is_null($galeriFirst))
             <div class="flex justify-center items-center p-4">
                 <p class="text-gray-600 text-md">Data belum tersedia</p>
             </div>
@@ -36,8 +36,8 @@
                     src="{{asset('foto_galeri/'.$galeriFirst->foto)}}" alt="Random image">
             </div>
 
-         
-                @foreach ($galeri as $data)
+            @if($galeri->isNotEmpty())
+                            @foreach ($galeri as $data)
                 @if ($loop->iteration < 4)
                     <div class="relative  col-span-1 row-span-1 ">
                         <img class="w-full h-full object-cover rounded-md"
@@ -58,8 +58,8 @@
                             </div>
                     </div>
                     @endif
-                  
-                @endforeach
+                    @endforeach
+                @endif
             </div>
             @endif
      
