@@ -97,7 +97,7 @@
                     </li>
                     <li>
                         Pertanyaan Anda diterima dan akan ditinjau segera oleh JPN, 
-                        dan dalam waktu 3x23 jam Anda akan mendapatkan notifikasi
+                        dan dalam waktu 3x24 jam Anda akan mendapatkan notifikasi
                         WhatsApp bahwa pertanyaan anda telah dijawab. 
                     </li>
                     <li>
