@@ -24,7 +24,6 @@ class InformasiPublikController extends Controller
         
         // Debugging hasil
         // dd($galeri);
-        
         // Kembalikan view dengan data
         return view('informasiPublik.index', compact('user', 'galeri', 'berita', 'galeriFirst'));
     }

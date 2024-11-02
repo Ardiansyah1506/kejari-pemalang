@@ -37,7 +37,7 @@
             </div>
 
          
-                @foreach ($galeri as $data)
+                @foreach ($galeriFirst as $data)
                 @if ($loop->iteration < 4)
                     <div class="relative  col-span-1 row-span-1 ">
                         <img class="w-full h-full object-cover rounded-md"
