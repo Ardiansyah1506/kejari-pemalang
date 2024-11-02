@@ -138,7 +138,7 @@
 @section('js-custom')
 <script>
     $(document).ready(function () {
-        
+
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
@@ -161,27 +161,23 @@
 
 
         // Saat tombol submit ditekan
-        $(document).on('click', '#btn', function (e) {
+        $(document).on('click', '#btn', async function (e) {
             e.preventDefault(); // Prevent default form submission
 
             // Ambil konten Quill
             var descriptionInput = document.querySelector('#deskripsi');
             descriptionInput.value = quill.root.innerHTML;
 
-            // Get the value of the input field
-           
-        const whatsappLink = document.getElementById("no_hp");
-        // Get the href attribute
-  const href = whatsappLink.getAttribute("href");
-
-// Extract the phone number from the URL
-const urlParams = new URLSearchParams(href.split('?')[1]);
-const number = urlParams.get('phone');
+            // Get the phone number from the WhatsApp link
+            const whatsappLink = document.getElementById("no_hp");
+            const href = whatsappLink.getAttribute("href");
+            const urlParams = new URLSearchParams(href.split('?')[1]);
+            const number = urlParams.get('phone');
+            console.log("Extracted phone number:", number); // Debugging output
 
             // Ambil ID dari data-id tombol
             var id = $(this).data('id');
-
-            // CSRF token
+            const message = "test"; // Ensure this is your desired message
             var token = $('meta[name="csrf-token"]').attr('content');
 
             // Data yang akan dikirim
@@ -198,24 +194,26 @@ const number = urlParams.get('phone');
                 data: data,
                 success: async function (response) {
                     alert("Jawaban berhasil dikirim.");
+                    console.log("Sending WhatsApp message...");
+
                     try {
-                        const response = await fetch('https://express-wa-api-production.up.railway.app/send-message', {
+                        const fetching = await fetch('https://express-wa-api-production.up.railway.app/send-message', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ number, message }), // Ensure 'message' is defined
+                            body: JSON.stringify({number: number,message: message }),
                         });
 
-                        const resultText = await response.text();  // Fetch response as text for inspection
-                        console.log("Raw response text:", resultText);
+                        if (!fetching.ok) {
+                            throw new Error(`HTTP error! status: ${fetching.status}`);
+                        }
 
-                        // Try parsing JSON if valid
-                        const result = JSON.parse(resultText);
-                        alert(result.status || result.message);
+                        const resultText = await fetching.json();
+                        alert(resultText.status || resultText.message);
                     } catch (error) {
                         console.error('Error parsing or fetching message:', error);
-                        alert('Error sending message');
+                        alert('Error sending message: ' + error.message);
                     }
                 },
                 error: function (xhr, status, error) {
