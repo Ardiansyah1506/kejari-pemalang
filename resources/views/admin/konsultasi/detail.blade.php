@@ -139,9 +139,6 @@
 <script>
     $(document).ready(function () {
         
-// Now you can use the phone number
-console.log("Phone Number:", phoneNumber);
-
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
