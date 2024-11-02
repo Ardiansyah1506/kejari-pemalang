@@ -26,8 +26,8 @@
                 <h2 class="text-xl md:text-5xl text-white font-bold mb-2">Pelayanan Hukum Cepat Mudah dalam Genggaman</h2>
                 <p class="text-white md:text-xl text-sm mb-10">Mempermudah Akses Hukum melalui Teknologi, Melayani Tanpa Kendala Ruang dan Waktu.</p>
                 <a href="{{ route('konsultasi.index') }}"
-                    class="bg-[#454c5640] hover:bg-[#2d2f3140] text-white px-px-2 py-2 md:px-6 md:py-4 font-bold rounded">Layanan
-                    Publik</a>
+                    class="bg-[#454c5640] hover:bg-[#2d2f3140] text-white px-px-2 py-2 md:px-6 md:py-4 font-bold rounded">Pelayanan
+                    Hukum</a>
             </div>
         </div>
     </section>
