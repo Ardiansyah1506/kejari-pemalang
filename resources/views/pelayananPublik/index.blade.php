@@ -92,14 +92,22 @@
                     </li>
                     <li>
                         Setelah mengisi semua informasi yang diperlukan, klik kirim
-                        formulir. Anda akan menerima email konfirmasi yang menyatakan
-                        bahwa permintaan konsultasi hukum sudah ter-submit dan akan
-                        ditinjau lebih lanjut.
+                        formulir. Anda akan menerima WhatsApp konfirmasi yang menyatakan
+                        bahwa pertanyaan konsultasi hukum sudah tersubmit.
                     </li>
                     <li>
-                        Setelah formulir diterima dan ditinjau, Anda dapat menjadwalkan
-                        pertemuan dengan pengacara. Pastikan Anda telah menyiapkan dokumen
-                        dan informasi yang relevan sebelum sesi konsultasi dimulai.
+                        Pertanyaan Anda diterima dan akan ditinjau segera oleh JPN, 
+                        dan dalam waktu 3x24 jam Anda akan mendapatkan notifikasi
+                        WhatsApp bahwa pertanyaan anda telah dijawab. 
+                    </li>
+                    <li>
+                        Jawaban dapat dicek melaui laman website datunkejaripemalang.com
+                    </li>
+                    <li>
+                        Apabila Anda kurang puas terhadap jawaban yang diberikan
+                        Anda dapat datang secara langsung ke Kantor Jaksa Pengacara
+                        Negara pada Kejaksaan Negeri Pemalang untuk mendapatkan
+                        konsultasi lebih lanjut.
                     </li>
                 </div>
             </div>
