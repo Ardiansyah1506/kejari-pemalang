@@ -79,7 +79,7 @@
 
             <div class="text-sm md:w-1/3 flex flex-col gap-2">
                 <h2 class="text-2xl">Tahapan</h2>
-                <div class="list-decimal flex flex-col gap-5 md-2 md:ml-6">
+                <div class="list-decimal flex flex-col gap-5 md-2 md:ml-4">
                     <li>
                         Silakan mengisi formulir yang tersedia. Masukan informasi dasar
                         seperti nama lengkap, alamat, email, dan nomor telepon. Tambahkan
