@@ -138,6 +138,10 @@
 @section('js-custom')
 <script>
     $(document).ready(function () {
+        
+// Now you can use the phone number
+console.log("Phone Number:", phoneNumber);
+
         var quill = new Quill('#editor', {
             theme: 'snow',
             modules: {
@@ -159,7 +163,6 @@
 
 
 
-
         // Saat tombol submit ditekan
         $(document).on('click', '#btn', function (e) {
             e.preventDefault(); // Prevent default form submission
@@ -167,12 +170,17 @@
             // Ambil konten Quill
             var descriptionInput = document.querySelector('#deskripsi');
             descriptionInput.value = quill.root.innerHTML;
-            var phoneNumber = document.getElementById("no_hp") 
 
-            // Mengubah awalan `0` menjadi `62` jika diperlukan
-            if (phoneNumber.startsWith('0')) {
-                phoneNumber = '62' + phoneNumber.substring(1);
-            }
+            // Get the value of the input field
+           
+        const whatsappLink = document.getElementById("no_hp");
+        // Get the href attribute
+  const href = whatsappLink.getAttribute("href");
+
+// Extract the phone number from the URL
+const urlParams = new URLSearchParams(href.split('?')[1]);
+const number = urlParams.get('phone');
+
             // Ambil ID dari data-id tombol
             var id = $(this).data('id');
 
@@ -199,7 +207,7 @@
                             headers: {
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify({ phoneNumber, message }),
+                            body: JSON.stringify({ number, message }), // Ensure 'message' is defined
                         });
 
                         const resultText = await response.text();  // Fetch response as text for inspection
@@ -217,9 +225,8 @@
                     alert("Gagal mengirim jawaban.");
                 }
             });
-
-
         });
+
 
     });
 </script>

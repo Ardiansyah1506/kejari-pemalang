@@ -36,7 +36,7 @@ class PelayananPublikController extends Controller
             'email' => ['required', 'string', 'max:255'],
             'nohp' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'], // Validasi nomor telepon dengan regex
             'keterangan' => ['required', 'string', 'min:8'], // validasi keterangan minimal 8 karakter
-            'dokumen' => [ 'file', 'mimes:pdf,doc,docx'], // validasi tipe file
+            'dokumen' => [ 'nullable','file', 'mimes:pdf,doc,docx'], // validasi tipe file
         ]);
     
         $ForumKonsultasi = new ForumKonsultasi();
@@ -47,12 +47,17 @@ class PelayananPublikController extends Controller
         $ForumKonsultasi->keterangan = $request->keterangan;
     
         if ($request->hasFile('dokumen')) {
+            // Ensure the directory exists
+            $destinationPath = public_path('berkas_konsultasi');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true); // Create the directory if it does not exist
+            }
+            
             $file = $request->file('dokumen');
             $fileName = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('berkas_konsultasi'), $fileName);
+            $file->move($destinationPath, $fileName);
             $ForumKonsultasi->dokumen_pendukung = $fileName;
         }
-    
         $ForumKonsultasi->save();
     
         return redirect()->back()->with('success', 'Pengaduan berhasil ditambahkan.');
