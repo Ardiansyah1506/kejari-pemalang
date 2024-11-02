@@ -21,12 +21,12 @@
 @section('content')
     <section class="relative hero overflow-hidden ">
         <img src="{{ asset('download.png') }}" alt="Gavel" class="absolute w-full h-full object-cover z-0 ">
-        <div class="relative z-10 bg-black bg-opacity-50 h-full flex items-center">
+        <div class="relative z-10 md:py-0 py-4 bg-black bg-opacity-50 h-full flex items-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-xl md:text-5xl text-white font-bold mb-2">Pelayanan Hukum Cepat Mudah dalam Genggaman</h2>
                 <p class="text-white md:text-xl text-sm mb-10">Mempermudah Pelayanan Hukum melalui Teknologi, Melayani Tanpa Kendala Ruang dan Waktu.</p>
                 <a href="{{ route('konsultasi.index') }}"
-                    class="bg-[#EEB230] hover:bg-[#2d2f3140] text-white px-px-2 py-2 md:px-6 md:py-4 font-bold rounded">Pelayanan
+                    class="bg-[#EEB230] hover:bg-[#2d2f3140] text-white px-2 py-2 md:px-6 md:text-md text-sm md:py-4 font-bold rounded">Pelayanan
                     Hukum</a>
             </div>
         </div>
