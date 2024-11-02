@@ -93,7 +93,7 @@
                     <li>
                         Setelah mengisi semua informasi yang diperlukan, klik kirim
                         formulir. Anda akan menerima WhatsApp konfirmasi yang menyatakan
-                        bahwa pertanyaan konsultasi hukum sudah ter-submit.
+                        bahwa pertanyaan konsultasi hukum sudah tersubmit.
                     </li>
                     <li>
                         Pertanyaan Anda diterima dan akan ditinjau segera oleh JPN, 
