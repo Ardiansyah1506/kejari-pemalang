@@ -99,8 +99,10 @@ class KonsultasiController extends Controller
             'keterangan' => $request->deskripsi,
         ]);
     
-        $message = 'Terimakasih Atas Pengaduan Anda, Jawaban Anda Telah di respon dalam situs kami';
-        SendWhatsappMessage::dispatch($request->number, $message);
+        $message = "📢 *Kejaksaan Negeri Pemalang*\n\n"
+        . "📝 *Deskripsi Pengaduan:* \n"
+        . "💬  Jawaban Anda telah diproses dan tersedia di situs kami. Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami.";
+       SendWhatsappMessage::dispatch($request->number, $message);
     
         return response()->json([
             'status' => 'success',
