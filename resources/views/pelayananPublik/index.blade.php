@@ -6,10 +6,19 @@
 @section('content')
     <div class="container mx-auto px-6 py-10 rounded-lg">
         @if (session('success'))
-            <div class="bg-green-500 text-white p-4 rounded mb-4" id="successMessage" style="display:none;">
-                {{ session('success') }}
-            </div>
-        @endif
+        <div class="bg-green-500 text-white p-4 rounded mb-4" id="successMessage" style="display:block;">
+            {{ session('success') }}
+        </div>
+    @elseif (session('warning'))
+        <div class="bg-yellow-500 text-white p-4 rounded mb-4" id="warningMessage" style="display:block;">
+            {{ session('warning') }} <!-- Use session('warning') instead of warningmessage -->
+        </div>
+    @elseif (session('error'))
+        <div class="bg-red-500 text-white p-4 rounded mb-4" id="errorMessage" style="display:block;">
+            {{ session('error') }}
+        </div>
+    @endif
+    
         <h3 class="text-2xl font-semibold text-green-800 mb-1">
             Konsultasi Hukum
         </h3>
@@ -38,7 +47,7 @@
                     </div>
                     <div>
                         <label for="nohp" class="block mb-2 text-sm font-medium">Nomor Telepon<span class="text-red-500 text-sm">*</span></label>
-                        <input type="tel" id="nohp" name="nohp"
+                        <input type="tel" id="nohp" name="no_hp"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                             placeholder="085******" pattern="[0-9]{10,15}" required />
                     </div>
@@ -190,19 +199,4 @@
 @endsection
 
 @section('js-custom')
-    <script>
-        $(document).ready(function() {
-            if ($('#successMessage').length) {
-                const message = $('#successMessage').text().trim();
-                if (message) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil!',
-                        text: message,
-                        confirmButtonText: 'OK'
-                    });
-                }
-            }
-        });
-    </script>
 @endsection
