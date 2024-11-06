@@ -33,7 +33,7 @@
     </section>
 
     <div class="container mx-auto px-6 py-10 rounded-lg">
-        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">BERITA UTAMA</h3>
+        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Selamat Datang di Website Datun Kejaksaan Negeri Pemalang</h3>
         <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
 
         @if ($data->isEmpty())
