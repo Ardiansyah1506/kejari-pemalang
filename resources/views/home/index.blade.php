@@ -15,7 +15,6 @@
 @endsection
 
 @section('css-library')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css">
 @endsection
 
 
@@ -80,63 +79,11 @@
 
 
 
-    <div class="container mx-auto px-6 py-10 rounded-lg">
-        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Jadwal Sidang
-        </h3>
-        <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
-
-                <table id="beritaTable" class="w-full text-sm md:text-md mb-4">
-                    <thead>
-                        <tr>
-                            <th>Agenda</th>
-                            <th>Perkara</th>
-                            <th>Tanggal Sidang</th>
-                            <th>Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-
-    </div>
 
 @endsection
 
 @section('js-library')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" ></script>
 @endsection
 
 @section('js-custom')
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-    fetch("{{ route('getData') }}")
-        .then(response => response.json())
-        .then(data => {
-            // Ambil data dari response dan masukkan ke dalam format array yang dibutuhkan
-            const tableData = data.data.map(item => [
-                item.agenda,
-                item.perkara,
-                item.tanggal_sidang,
-                item.keterangan
-            ]);
-
-            // Inisialisasi tabel Simple-DataTables
-            const table = document.querySelector("#beritaTable");
-            const dataTable = new simpleDatatables.DataTable(table, {
-                data: {
-                    headings: ["Agenda", "Perkara", "Tanggal Sidang", "Keterangan"],
-                    data: tableData
-                },
-                searchable: false,
-                fixedHeight: true,
-                sortable: false ,
-                paging: true,   
-                perPageSelect: false, 
-                perPage: 1   
-            });
-        })
-        .catch(error => console.error("Error fetching data:", error));
-});
-
-    </script>
 @endsection
