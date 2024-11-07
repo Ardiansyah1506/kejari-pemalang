@@ -26,7 +26,7 @@
             </li>
             <li class="md:p-6 py-2">
                 <a class="block hover:text-black-400 text-sm hover:font-extrabold"
-                    href="{{ Route('konsultasi.index') }}">Pelayanan Publik</a>
+                    href="{{ Route('konsultasi.index') }}">Pelayanan Hukum</a>
             </li>
         </ul>
     </div>
