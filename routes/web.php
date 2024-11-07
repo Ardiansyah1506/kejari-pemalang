@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\JadwalSidangController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -12,11 +13,12 @@ use App\Http\Controllers\InformasiPublikController;
 use App\Http\Controllers\PelayananPublikController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/getData', [HomeController::class, 'getData'])->name('getData');
 Route::get('/informasi-publik', [InformasiPublikController::class, 'index'])->name('informasiPublik');
 Route::get('/informasi-publik/berita', [InformasiPublikController::class, 'berita'])->name('berita');
 Route::get('/informasi-publik/galeri', [InformasiPublikController::class, 'galeri'])->name('galeri');
 Route::get('/informasi-publik/berita/{id}', [InformasiPublikController::class, 'Detailberita'])->name('berita.detail');
-Route::get('/soon', [HomeController::class, 'coming_soon'])->name('404');
+// Route::get('/soon', [HomeController::class, 'coming_soon'])->name('404');
 Route::post('/login', [LoginController::class, 'actionLogin'])->name('actionLogin');
 
 Route::group(['prefix' => 'konsultasi', 'as' => 'konsultasi.', 'controller' => PelayananPublikController::class], function () {
@@ -27,6 +29,16 @@ Route::group(['prefix' => 'konsultasi', 'as' => 'konsultasi.', 'controller' => P
 Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+    Route::group(['prefix' => 'admin/sidang', 'as' => 'admin.sidang.', 'controller' => JadwalSidangController::class], function () {
+        Route::get('/', 'index')->name('index'); // Halaman index
+        Route::get('/getData', 'getData')->name('getData');
+        Route::post('/store', 'store')->name('store'); // Menyimpan jadwal baru
+        Route::get('/show/{id}', 'show')->name('show'); // Menampilkan detail jadwal
+        Route::get('/edit/{id}', 'edit')->name('edit'); // Menampilkan halaman edit
+        Route::post('/update', 'update')->name('update'); // Memperbarui jadwal yang ada
+        Route::delete('/delete/{id}', 'destroy')->name('destroy'); // Menghapus jadwal
+    });
+    
 
     Route::group(['prefix' => 'admin/galeri', 'as' => 'admin.galeri.', 'controller' => GaleriController::class], function () {
         Route::get('/', 'index')->name('index');

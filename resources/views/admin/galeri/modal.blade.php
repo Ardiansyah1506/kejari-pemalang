@@ -1,15 +1,11 @@
-<!-- Modal untuk Tambah dan Edit Berita -->
-<div class="fixed z-10 overflow-y-auto  top-0 w-full left-0 hidden" id="modal">
-    <div class="p-10 xs:p-0 h-1/2 mx-auto md:w-full md:max-w-xl">
-        <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
-            <div class="flex justify-between items-center p-2 pb-0">
-                <h1 class="md:text-xl text-sm" id="modal-title">Tambah Berita</h1>
-                <button type="button" class="py-2 px-4 rounded hover:bg-gray-100 mr-2" onclick="toggleModal()">
-                    &#10005;</button>
-            </div>
-            <hr>
-            <div class="px-5 py-7">
-                <form id="form-galeri" method="POST" enctype="multipart/form-data" class="flex gap-2 flex-col">
+<div id="modal" class="fixed inset-0 flex items-center justify-center hidden bg-gray-800 bg-opacity-75">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md px-5">
+        <div class=" py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 id="modal-title" class="text-xl font-semibold text-gray-800">Tambah Jadwal Sidang</h2>
+            <button type="button" class="py-2 px-4 rounded hover:bg-gray-100 mr-2" onclick="toggleModal()">
+                &#10005;</button>
+        </div>
+                <form id="form-galeri" method="POST" enctype="multipart/form-data" class="py-2">
                     @csrf
                     <input type="hidden" name="id" id="id">
                     <div>
@@ -36,15 +32,11 @@
                     </div>
                     <small id="link" class=" py-1 flex w-full justify-end">
                     </small>
-                    <div class="flex justify-center items-center p-3">
-                        <button type="submit" class="transition duration-200 bg-[#006E61] bg-opacity-50 hover:bg-opacity-100  focus:bg-[#006E61] focus:bg-opacity-100 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block">
-                            <span class="inline-block mr-2">Simpan</span>
-                        </button>
-
+                    <div class="px-6 py-4 border-t border-gray-200 flex justify-end">
+                        <button type="button" class="px-4 py-2 mr-2 text-gray-600 bg-gray-100 rounded hover:bg-gray-200" onclick="toggleModal()">Batal</button>
+                        <button type="submit" class="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700">Simpan</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-</div>
 

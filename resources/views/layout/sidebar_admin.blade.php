@@ -20,9 +20,14 @@
         <a href="{{ route('admin.konsultasi.index') }}"
             class="flex items-center  opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
             <i class=" mr-3"><img src="{{ asset('konsultasi-icon.png') }}" alt=""></i>
-
             Forum Konsultasi
         </a>
+
+        <a href="{{ route('admin.sidang.index') }}"
+        class="flex items-center  opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+        <i class=" mr-3 fas fa-calendar-alt"></i>
+        Jadwal Sidang
+    </a>
     </nav>
     <a href="{{ route('logout') }}" id="logoutButton"
         class="absolute w-full  bottom-0 flex items-center justify-center py-4">
@@ -77,6 +82,11 @@
 
                 Forum Konsultasi
             </a>
+            <a href="{{ route('admin.sidang.index') }}"
+            class="flex items-center  opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <i class=" mr-3 fas fa-calendar-alt"></i>
+            Jadwal Sidang
+        </a>
             <a href="{{ route('logout') }}" id="logoutButton"
                 class="flex items-center  opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                 <i class="mr-3"><img src="{{ asset('logout-icon.png') }}" alt=""></i> Logout

@@ -28,11 +28,11 @@ class BeritaController extends Controller
         return datatables()->of($berita)
             ->addColumn('action', function ($row) {
                 return '
-                <div class="p-3 px-5 flex justify-end">
+                <div class="flex justify-end text-xl">
                     <button type="button"
-                        class="edit-btn  text-xl rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">   <i class="fa-regular fa-pen-to-square text-gray-600 text-md md:text-md py-2 px-2 md:px-4 " "></i></button>
+                        class="edit-btn  rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '">   <i class="fa-regular fa-pen-to-square text-gray-600 text-md md:text-md py-2 px-2 md:px-4 " "></i></button>
                     <button type="button"
-                        class="btn-delete text-xl  py-1  rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '"><i class="fa-solid fa-trash-can text-red-500 hover:text-red-300 text-md md:text-md py-2 px-2 md:px-4"></i></button>
+                        class="btn-delete py-1  rounded focus:outline-none focus:shadow-outline" data-id="' . $row->id . '"><i class="fa-solid fa-trash-can text-red-500 hover:text-red-300 text-md md:text-md py-2 px-2 md:px-4"></i></button>
                 </div>
                 ';
             })

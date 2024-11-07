@@ -15,6 +15,7 @@
 @endsection
 
 @section('css-library')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css">
 @endsection
 
 
@@ -24,7 +25,8 @@
         <div class="relative z-10 md:py-0 py-4 bg-black bg-opacity-50 h-full flex items-center">
             <div class="container mx-auto px-6">
                 <h2 class="text-xl md:text-5xl text-white font-bold mb-2">Pelayanan Hukum Cepat Mudah dalam Genggaman</h2>
-                <p class="text-white md:text-xl text-sm mb-10">Mempermudah Pelayanan Hukum melalui Teknologi, Melayani Tanpa Kendala Ruang dan Waktu.</p>
+                <p class="text-white md:text-xl text-sm mb-10">Mempermudah Pelayanan Hukum melalui Teknologi, Melayani Tanpa
+                    Kendala Ruang dan Waktu.</p>
                 <a href="{{ route('konsultasi.index') }}"
                     class="bg-[#EEB230] hover:bg-[#2d2f3140] text-white px-2 py-2 md:px-6 md:text-md text-sm md:py-4 font-bold rounded">Pelayanan
                     Hukum</a>
@@ -33,7 +35,8 @@
     </section>
 
     <div class="container mx-auto px-6 py-10 rounded-lg">
-        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Selamat Datang di Website Datun Kejaksaan Negeri Pemalang</h3>
+        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Selamat Datang di Website Datun Kejaksaan Negeri Pemalang
+        </h3>
         <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
 
         @if ($data->isEmpty())
@@ -74,11 +77,66 @@
         @endif
 
     </div>
+
+
+
+    <div class="container mx-auto px-6 py-10 rounded-lg">
+        <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Jadwal Sidang
+        </h3>
+        <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
+
+                <table id="beritaTable" class="w-full text-sm md:text-md mb-4">
+                    <thead>
+                        <tr>
+                            <th>Agenda</th>
+                            <th>Perkara</th>
+                            <th>Tanggal Sidang</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
     </div>
+
 @endsection
 
 @section('js-library')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" ></script>
 @endsection
 
 @section('js-custom')
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+    fetch("{{ route('getData') }}")
+        .then(response => response.json())
+        .then(data => {
+            // Ambil data dari response dan masukkan ke dalam format array yang dibutuhkan
+            const tableData = data.data.map(item => [
+                item.agenda,
+                item.perkara,
+                item.tanggal_sidang,
+                item.keterangan
+            ]);
+
+            // Inisialisasi tabel Simple-DataTables
+            const table = document.querySelector("#beritaTable");
+            const dataTable = new simpleDatatables.DataTable(table, {
+                data: {
+                    headings: ["Agenda", "Perkara", "Tanggal Sidang", "Keterangan"],
+                    data: tableData
+                },
+                searchable: false,
+                fixedHeight: true,
+                sortable: false ,
+                paging: true,   
+                perPageSelect: false, 
+                perPage: 1   
+            });
+        })
+        .catch(error => console.error("Error fetching data:", error));
+});
+
+    </script>
 @endsection

@@ -16,11 +16,12 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $pageTitle = 'Manajemen User';
+        
         if (Auth::check()) {
             return view('admin.user.index', compact('user', 'pageTitle'));
-        } else {
-            return redirect('/')->with('alert', 'Silahkan login terlebih dahulu!');
-        }
+            } else {
+                return redirect('home')->with('alert', 'Silahkan login terlebih dahulu!');
+            }
 
     }
     public function getData()
@@ -29,10 +30,13 @@ class UserController extends Controller
         return datatables()->of($user)
             ->addColumn('action', function ($row) {
                 return '
-                <div class="p-3 px-5 flex justify-end">
-                <button class="btn-delete" data-id="' . $row->id . '"><i class="fa-solid text-xl fa-trash-can  text-red-500 hover:text-red-700  py-1 px-2 rounded focus:outline-none focus:shadow-outline"></i></button>
-                </div>
-                ';
+                <div class="flex justify-start space-x-2">
+         
+            <!-- Delete Button -->
+            <button class="btn-delete text-red-500 hover:text-red-700" data-id="' . $row->id . '">
+                <i class="md:text-xl text-sm fa-solid fa-trash-can"></i>
+            </button>
+        </div>';
             })
 
             ->make(true);
