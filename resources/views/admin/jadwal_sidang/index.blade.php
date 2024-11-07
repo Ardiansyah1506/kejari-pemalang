@@ -86,6 +86,7 @@
                     {
                         data: 'keterangan'
                     },
+                   
                     {
                         data: 'action',
                         orderable: false,
@@ -131,6 +132,7 @@
 
         <div class="font-semibold">Keterangan:</div>
         <div>${response.data.keterangan}</div>
+
     </div>
                     `);
                             toggleModal('modalShow'); // Tampilkan modal
