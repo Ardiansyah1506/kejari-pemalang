@@ -61,11 +61,11 @@ class PelayananPublikController extends Controller
             $ForumKonsultasi->save();
 
             $phoneNumber = '62' . ltrim($request->no_hp, '0');  // Ensure the phone number is formatted correctly
-            $message = "📢 *Kejaksaan Negeri Pemalang*\n\n"
-            . "✅ *Pengaduan Anda Berhasil Diajukan!*\n\n"
-            . "Terima kasih telah mengajukan pengaduan.\n\n"
-            . "📝 *Informasi Pengaduan:* \n"
-            . "Pengaduan Anda akan segera ditindaklanjuti, dan kami akan mengirimkan pemberitahuan melalui WhatsApp begitu respons telah tersedia di situs kami.";
+            $message = "📢 *Datun Kejaksaan Negeri Pemalang*\n\n"
+            . "✅ *Permohonan permasalahan Anda Berhasil Diajukan!*\n\n"
+            . "Terima kasih telah menggunakan pelayanan hukum online.\n\n"
+            . "📝 *Informasi Pelayanan Hukum:* \n"
+            . "Permohonan Anda akan segera ditindaklanjuti, dan kami akan mengirimkan pemberitahuan melalui WhatsApp begitu respons telah tersedia di situs kami.";
    
             // Dispatch the job
             SendWhatsappMessage::dispatch($phoneNumber, $message);

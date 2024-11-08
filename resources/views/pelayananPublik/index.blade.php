@@ -52,7 +52,7 @@
                             placeholder="085******" pattern="[0-9]{10,15}" required />
                     </div>
                     <div>
-                        <label for="keterangan" class="block mb-2 text-sm font-medium">Keterangan<span class="text-red-500 text-sm">*</span></label>
+                        <label for="keterangan" class="block mb-2 text-sm font-medium">Pertanyaan / Permasalahan<span class="text-red-500 text-sm">*</span></label>
                         <textarea id="keterangan" name="keterangan" rows="4"
                             class="block p-2.5 w-full text-sm rounded-lg border focus:ring-blue-500 focus:border-blue-500"
                             placeholder="Masukkan keterangan tambahan" required></textarea>
