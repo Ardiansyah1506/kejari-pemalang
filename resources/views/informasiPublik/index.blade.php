@@ -106,19 +106,19 @@
         @endif
 
         <div class="container mx-auto mt-10 md:mt-20 rounded-lg">
-            <h3 class="text-2xl font-semibold text-green-800 mb-1 ">Jadwal Sidang
-            </h3>
-            <hr class="my-4 h-1 border " style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
-
-            <table id="beritaTable" class="w-full text-sm md:text-md mb-4">
-                <thead class="bg-gray-500">
-                  
-                </thead>
-                <tbody></tbody>
-            </table>
-
+            <h3 class="text-2xl font-semibold text-green-800 mb-1">Jadwal Sidang</h3>
+            <hr class="my-4 h-1 border" style="background: linear-gradient(to right, #eeb230 20%, #718096 20%)">
+        
+            <!-- Wrap table with overflow-auto for responsive scrolling -->
+            <div class="overflow-auto rounded-lg">
+                <table id="beritaTable" class="min-w-full text-sm md:text-md mb-4">
+                    <thead class="bg-gray-500">
+                       
+                    </thead>
+                    <tbody class="md:text-md text-sm "></tbody>
+                </table>
+            </div>
         </div>
-    </div>
 @endsection
 
 
@@ -156,7 +156,7 @@
                             data: tableData
                         },
                         searchable: false,
-                        fixedHeight: true,
+                        fixedHeight: false,
                         sortable: false,
                         paging: true,
                         perPageSelect: false,

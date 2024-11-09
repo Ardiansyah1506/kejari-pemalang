@@ -14,7 +14,7 @@
 
     <div class="grid md:grid-cols-4 grid-cols-2 gap-6">
         @foreach ($galeri as $data)
-                <img src="{{ asset('foto_berita/' . $data->foto) }}" class=" w-full object-cover rounded-lg" alt="">
+                <img src="{{ asset('foto_galeri/' . $data->foto) }}" class=" w-full object-cover rounded-lg" alt="">
         @endforeach
     </div>
 </div>

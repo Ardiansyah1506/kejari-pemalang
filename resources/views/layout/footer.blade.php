@@ -1,7 +1,7 @@
 <footer class="bg-green-800 text-white sm:px-6 py-2 md:py-6">
     <div class="container mx-auto px-5  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="flex w-full items-center justify-start">
-            <img src="{{asset('logo-footer.png')}}" class="w-3/4  " alt="">
+        <div class="flex w-full  items-center justify-center md:justify-start">
+            <img src="{{asset('logo-footer.png')}}" class="md:w-3/4  w-1/2" alt="">
         </div>
         <div class="grid grid-cols-1 gap-2 px-4">
             <div class="flex flex-col gap-2">
