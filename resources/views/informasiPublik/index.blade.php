@@ -160,7 +160,7 @@
                         sortable: false,
                         paging: true,
                         perPageSelect: false,
-                        perPage: 1
+                        perPage: 10
                     });
                 })
                 .catch(error => console.error("Error fetching data:", error));
