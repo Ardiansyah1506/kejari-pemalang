@@ -67,7 +67,8 @@
                 <h4 class="text-xl md:hidden block font-semibold text-green-800 w-full">Kami menyambut Anda di portal
                     digital Seksi Perdata
                     dan Tata Usaha Negara (Datun) Kejaksaan Negeri Pemalang</h4>
-
+                
+                    {{-- Ubah Foto Disini HomePage Disini --}}
                 <img src="{{ asset('foto_berita/sample.png') }}" class="aspect-[4/3]" alt="">
                 <img src="{{ asset('foto_berita/sample.png') }}" class="aspect-[4/3] hidden md:block" alt="">
             </div>
