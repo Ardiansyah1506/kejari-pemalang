@@ -128,16 +128,14 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 @endsection
 
-
 @section('js-custom')
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             fetch("{{ route('getData') }}")
                 .then(response => response.json())
                 .then(data => {
-                    // Ambil data dari response dan masukkan ke dalam format array yang dibutuhkan
                     const tableData = data.data.map((item, index) => [
-                        index + 1, // Nomor urut (index + 1)
+                        index + 1, 
                         item.perkara,
                         item.tanggal_sidang,
                         item.penggugat,
@@ -146,13 +144,12 @@
                         item.keterangan
                     ]);
 
-                    // Inisialisasi tabel Simple-DataTables
                     const table = document.querySelector("#beritaTable");
                     const dataTable = new simpleDatatables.DataTable(table, {
                         data: {
                             headings: ["No", "Perkara", "Tanggal Sidang", "Penggugat", "Tergugat",
                                 "Agenda", "Keterangan"
-                            ], // Menambahkan "No" di sini
+                            ],
                             data: tableData
                         },
                         searchable: false,
@@ -161,6 +158,20 @@
                         paging: true,
                         perPageSelect: false,
                         perPage: 10
+                    });
+
+                    // Menambahkan kelas border pada setiap sel setelah tabel diinisialisasi
+                    dataTable.on('datatable.init', function() {
+                        table.querySelectorAll('tr').forEach(row => {
+                            row.querySelectorAll('td').forEach(cell => {
+                                cell.style.border = "1px solid #ddd";
+                                cell.style.padding = "8px";
+                            });
+                        });
+                        table.querySelectorAll('thead th').forEach(header => {
+                            header.style.border = "1px solid #ddd";
+                            header.style.padding = "8px";
+                        });
                     });
                 })
                 .catch(error => console.error("Error fetching data:", error));
