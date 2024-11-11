@@ -101,8 +101,7 @@ class KonsultasiController extends Controller
     
         $message = "📢 *Kejaksaan Negeri Pemalang*\n\n"
         . "Jawaban Anda telah diproses dan tersedia di situs kami https://datunkejaripemalang.com/konsultasi \n
-         Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami \n
-         Atau Anda dapat datang langsung ke Kantor JPN Datun Kejari Pemalang.";
+         Jika Anda memiliki pertanyaan lebih lanjut, jangan ragu untuk menghubungi kami atau Anda dapat datang langsung ke Kantor JPN Datun Kejari Pemalang.";
        SendWhatsappMessage::dispatch($request->number, $message);
     
         return response()->json([
