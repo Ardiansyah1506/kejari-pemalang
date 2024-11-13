@@ -70,7 +70,7 @@
                 
                     {{-- Ubah Foto Disini HomePage Disini --}}
                 <img src="{{ asset('Foto.jpg') }}" class="aspect-[4/3]" alt="">
-                <img src="{{ asset('foto_berita/sample.png') }}" class="aspect-[4/3] hidden md:block" alt="">
+                <img src="{{ asset('PDAM.jpg') }}" class="aspect-[4/3] hidden md:block" alt="">
             </div>
         </div>
 
