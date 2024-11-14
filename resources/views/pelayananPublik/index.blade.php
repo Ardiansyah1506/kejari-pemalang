@@ -128,7 +128,7 @@
     <div class="bg-[#EEB230] w-full bg-opacity-10">
         <div class="p-6 rounded-md max-w-6xl mx-auto mt-8">
             <!-- Header -->
-            <h2 class="text-lg font-semibold text-emerald-800">Forum Konsultasi Online ({{ $ForumKonsultasi->total() }})
+            <h2 class="text-lg font-semibold text-emerald-800">Forum Pelayanan Hukum Online ({{ $ForumKonsultasi->total() }})
             </h2>
             <hr class="my-4 border-emerald-300">
 
