@@ -28,7 +28,7 @@
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-1">
                     <div>
-                        <label class="block mb-2 text-sm font-medium" required>Tanda * harus diisi</label>
+                        <label class="block mb-2 text-sm font-medium" required>Tanda * wajib diisi</label>
                     </div>
                     <div>
                         <label for="nama" class="block mb-2 text-sm font-medium">Nama Lengkap<span class="text-red-500 text-sm">*</span></label>
