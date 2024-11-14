@@ -28,6 +28,9 @@
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-1">
                     <div>
+                        <h4 class="text-2xl">Tanda * harus diisi</h4>
+                    </div>
+                    <div>
                         <label for="nama" class="block mb-2 text-sm font-medium">Nama Lengkap<span class="text-red-500 text-sm">*</span></label>
                         <input type="text" id="nama" name="nama"
                             class="border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
