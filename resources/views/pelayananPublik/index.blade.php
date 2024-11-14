@@ -113,7 +113,8 @@
                         WhatsApp bahwa pertanyaan anda telah dijawab. 
                     </li>
                     <li>
-                        Jawaban dapat dicek melaui laman website datunkejaripemalang.com
+                        Jawaban dapat dicek melaui laman website datunkejaripemalang.com 
+                        Pada bagian bawah Forum Pelayanan Hukum Online
                     </li>
                     <li>
                         Apabila Anda kurang puas terhadap jawaban yang diberikan
