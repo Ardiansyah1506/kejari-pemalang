@@ -155,33 +155,11 @@
                                 </ol>
                                 <p class="text-sm text-gray-500 mt-2">
                                     @php
-                                    $createdAt = \Carbon\Carbon::parse($forum->created_at);
-                                    $now = \Carbon\Carbon::now();
-                    
-                                    // Hitung selisih waktu
-                                    $diffInMinutes = $now->diffInMinutes($createdAt);
-                                    $diffInHours = $now->diffInHours($createdAt);
-                                    $diffInDays = $now->diffInDays($createdAt);
-                                    
-                                    // Format tanggal sesuai ketentuan
-                                    if ($diffInMinutes < 1) {
-                                        // Jika kurang dari 1 menit
-                                        echo 'baru saja';
-                                    } elseif ($diffInMinutes < 60) {
-                                        // Jika kurang dari 1 jam
-                                        echo $diffInMinutes . ' menit yang lalu';
-                                    } elseif ($diffInHours < 24) {
-                                        // Jika kurang dari 1 hari
-                                        echo $diffInHours . ' jam yang lalu';
-                                    } elseif ($diffInDays <= 7) {
-                                        // Jika kurang dari atau sama dengan 7 hari
-                                        echo $createdAt->diffForHumans(); // Misal "2 hari yang lalu"
-                                    } else {
-                                        // Jika lebih dari 7 hari
-                                        echo $createdAt->translatedFormat('l, d F Y'); // Format: "Sabtu, 05 Oktober 2024"
-                                    }
-                                @endphp
+                                        $createdAt = \Carbon\Carbon::parse($forum->created_at);
+                                        echo $createdAt->translatedFormat('d F Y');
+                                    @endphp
                                 </p>
+                                
                             </div>
                         @endif
                     </div>

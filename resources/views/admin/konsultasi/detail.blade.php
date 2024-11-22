@@ -80,28 +80,11 @@
                 </ol>
                 <p class="text-sm text-gray-500 mt-2 capitalize" id="time">
                     @php
-                    $createdAt = \Carbon\Carbon::parse($data->waktu_jawab);
-                    $now = \Carbon\Carbon::now();
-
-                    // Hitung selisih waktu
-                    $diffInMinutes = $now->diffInMinutes($createdAt);
-                    $diffInHours = $now->diffInHours($createdAt);
-                    $diffInDays = $now->diffInDays($createdAt);
-
-                    // Format tanggal sesuai ketentuan
-                    if ($diffInMinutes < 1) {
-                        echo 'baru saja';
-                    } elseif ($diffInMinutes < 60) {
-                        echo $diffInMinutes . ' menit yang lalu';
-                    } elseif ($diffInHours < 24) {
-                        echo $diffInHours . ' jam yang lalu';
-                    } elseif ($diffInDays <= 7) {
-                        echo $createdAt->diffForHumans(); // Misal "2 hari yang lalu"
-                    } else {
-                        echo $createdAt->translatedFormat('l, d F Y'); // Format: "Sabtu, 05 Oktober 2024"
-                    }
+                        $createdAt = \Carbon\Carbon::parse($data->waktu_jawab);
+                        echo $createdAt->translatedFormat('d F Y');
                     @endphp
                 </p>
+                
             </div>
             @else
             <div class="mt-4 ml-6 p-3">
